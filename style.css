@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.attribution { 
+    font-size: 11px;
+    text-align: center;
+ }
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
+body{
+    background-color:  hsl(223, 19%, 93%);
+    font-family: 'Rubik', sans-serif;
+}
+
+.main-container{
+    display: grid;
+    margin: 10%;
+    justify-content: center;
+}
+
+/* submit form design*/
+.comment-form-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+  
+}
+.form{
+    display: grid;
+    background-color: #fff;
+    width: 90vw;
+    justify-content: center; 
+    border-radius: 10px;
+}
+
+.form-text-area{
+    width: 80vw;
+    margin-top: 4vw;
+    border-radius: 5px;
+    padding: 4%;
+}
+.comment-form-btn{
+    background-color: hsl(238, 40%, 52%);
+    color: #fff;
+    width: 6rem;
+    height: 2.6rem;
+    border-radius: 8px;  
+    border-style: none;   
+}
+#main-form-img{
+    width: 2rem;
+}
+
+/*modal design */
+
+
+.background-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.3);
+}
+
+.modal-content{
+    width: 86vw;
+    background-color: white;
+    border-radius: 2vw;
+    padding: 6%;
+}
+
+.modal-content ,p{
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+}
+button{
+    width: 9rem;
+    font-size: 0.6rem;
+    color: #fff;
+    text-align: center;
+    padding: 2.3vw;
+    margin-top: 2vw;
+    border-radius: 0.5rem;
+}
+.modal-button{
+    display: flex;
+    gap: 1rem;
+}
+.delete{
+    background-color: hsl(358, 79%, 66%)
+}
+.cancel{
+    background-color:  hsl(211, 10%, 45%)
+}
+.show{
+    display: none;
+}
+
+/* main comment section design*/
+
+.comment-card{
+    display: grid;
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    
+}
+.comment-card-header{
+    display: flex;
+    gap: 1rem;
+    
+}
+.comment-card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.comment-card-button, .reply-button{
+    display: flex;
+    cursor: pointer;
+}
+.comment-card-button{
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    width: 5rem;
+    height: 2rem;
+    background-color: hsl(228, 33%, 97%);
+    border-radius: 5px;
+    cursor: pointer;
+   
+}
+
+.img img{
+    width: 2rem;
+}
+.comment-reply-card{
+    display: grid;
+    background-color: #fff;
+    width: 85vw;
+    justify-content: center; 
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* reply session*/
+
+.reply-append{
+    margin-left: 1rem;
+    position: relative;
+}
+.reply-append::before{
+    content: "";
+    display: flex;
+    position:absolute;
+    z-index: 1;
+    left: -15px;
+    top: 0;
+    bottom: 0;
+    border: 1px solid hsl(238, 40%, 52%);
+    opacity: 0.4;
+    border-width: 0 0 0 1px;
+   
+}
+.user-delete-edit-card{
+    display: flex;
+    gap: 1rem;
+}
+.card-image{
+    margin-top: 50%;
+    width: 2rem;
+}
