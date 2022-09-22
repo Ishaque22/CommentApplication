@@ -6,7 +6,7 @@ let modal =document.querySelector('.background-modal')
 let userImg= document.getElementById('main-form-img')
 let mainForm=document.querySelector('.form')
 let mainContainer= document.querySelector('.main-container')
-
+let mainFormText= document.querySelector('.form-text-area')
 
 let url= './data.json';
  fetch(url)
@@ -110,7 +110,7 @@ const comment=(obj)=>{
     newFormCopy.querySelector('.username').textContent= `${obj.username}`
     newFormCopy.querySelector('.date').textContent= `${obj.date}`
     newFormCopy.querySelector('.img').innerHTML= ` <img src="${obj.image}" alt="">  `
-    newFormCopy.querySelector('.comment-card-content').value
+    newFormCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
    
     let footer= newFormCopy.querySelector('.reply-button')
     if(obj.username=='juliusomo'){
@@ -135,16 +135,17 @@ const comment=(obj)=>{
  
  const allComments= JSON.parse(localStorage.getItem("finalComm")) || []
  
- const addComment=(image,username,date,score)=>{
+ const addComment=(image,username,date,score,content)=>{
         allComments.push({
             image,
             username,
             date,
-            score
+            score,
+            content
         });
         localStorage.setItem("finalComm", JSON.stringify(allComments));
 
-        return {image,username,date,score}
+        return {image,username,date,score,content}
     
 };
 allComments.forEach(newComment)
@@ -165,11 +166,13 @@ allComments.forEach(newComment)
         data.currentUser.image.png,
         data.currentUser.username,
         date,
-        0
+        0,
+        mainFormText.value
     )
 
     let test= document.createElement('div')
     test.innerHTML=`hello world`
+    mainFormText.value=''
 
    
     mainContainer.insertBefore(newComment(newComments),mainForm)
