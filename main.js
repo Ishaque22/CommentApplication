@@ -179,8 +179,16 @@ allComments.forEach(newComment)
 }
     )}
  
- modalBtn.addEventListener('click',(e)=>{
+modalBtn.addEventListener('click',(e)=>{
+    e.preventDefault
+    let target= e.target
+    console.log(target )
+   })
+
    function deleteForm(event){
+ 
+    let par =event.target.parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.firstElementChild
+    console.log(par)
   toggleModal(event)
   localStorage.clear()
     
