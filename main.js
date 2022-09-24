@@ -180,11 +180,6 @@ allComments.forEach(newComment)
     )}
  
  modalBtn.addEventListener('click',(e)=>{
-    e.preventDefault
-    let target= e.target
-    console.log(target )
-   })
-
    function deleteForm(event){
   toggleModal(event)
   localStorage.clear()
