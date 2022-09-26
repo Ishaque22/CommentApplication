@@ -28,6 +28,28 @@ p{
     width: 8rem;
     justify-content: space-between;
 }
+/* Reply styling*/
+.reply-card{
+    position: relative;
+}
+
+.reply-card > .comment-card{
+    width: 77vw;
+    margin-left: 2rem;
+    margin-right: 3rem;
+}
+.reply-card::before{
+    content: "";
+    display: flex;
+    position:absolute;
+    left:3vw;
+    top: 0;
+    bottom: 20px;
+    border: 1px solid hsl(238, 40%, 52%);
+    opacity: 0.4;
+    border-width: 0 0 0 1px;
+    z-index: -1;
+}
 /* background delete modal styling*/
 
 .background-modal{
@@ -172,7 +194,14 @@ p{
     height: auto;
     margin-top: 2%;
 }
-
+.form-btn{
+    background-color: hsl(238, 40%, 52%);
+    color: #fff;
+    width: 5.5rem;
+    height: 2.3rem;
+    border-radius: 8px;  
+    border-style: none; 
+}
 .reply-card1{
     margin-bottom: 20%;
 }
@@ -321,7 +350,27 @@ p{
 .form-footer>img{
     width: 3vw;
     height: auto;
+
 }
+.reply-card > .comment-card{
+    width: 65%;
+    margin-left: 20vw;
+    margin-right: 10vw;
+    
+}
+.reply-card::before{
+    content: "";
+    display: flex;
+    position:absolute;
+    left: 18vw;
+    top: 0;
+    bottom: 20px;
+    border: 1px solid hsl(238, 40%, 52%);
+    opacity: 0.4;
+    border-width: 0 0 0 1px;
+   z-index: -1;
+}
+
 }
 .main-form{
     width: 100%;
