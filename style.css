@@ -248,12 +248,12 @@ p{
     /* comment card desktop styling*/
 
     .comment-card{
-        width: 60%;
+        width: 60vw;
        display: inline-block;
         position: relative;
         background-color: white;
         border-radius: 5px;
-        margin: 0.5% 18%;
+        margin: 0.5% 17%;
         padding-top: 0%;
         padding-bottom:0% ;
        
@@ -317,8 +317,8 @@ p{
     position: relative;
     justify-content: center;
     align-items: center;
-    width: 60%;
-    margin: 0.5% 18%;
+    width: 60vw;
+    margin: 0.5% 17%;
     background-color: #fff;
     border-radius: 5px;
    
@@ -360,7 +360,7 @@ p{
 
 }
 .reply-card > .comment-card{
-    width: 55%;
+    width: 56vw;
     margin-left: 19.2vw;
     margin-right: 10vw;
     
@@ -378,14 +378,14 @@ p{
    z-index: -1;
 }
 .container{
-    margin-left:8vw;
+    margin-left:3vw;
 }
 .comment-img>img{
     width: 2rem;
 }
 .user-delete-edit-card{
     display: flex;
-    width: 12vw;
+    width: 7rem;
     justify-content: space-between;
 }
 }
