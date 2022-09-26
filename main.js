@@ -99,7 +99,7 @@ if(obj.name=='juliusomo'){
     <div class="delete-edit-btn">
       <div class="delete-btn" onclick='toggleModal(event)'>
         <img src="./images/icon-delete.svg" alt="">
-        <span>DELETE</span>
+        <span>Delete</span>
       </div>
     </div>
     <div class="edit-btn">
@@ -130,11 +130,12 @@ const newComment=(obj)=>{
   newFormCopy.querySelector('.date').textContent= `${obj.date}`
   newFormCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
   newFormCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
+  let replyForm=newFormCopy.getElementById('comment-reply-card');
  
   let footer= newFormCopy.querySelector('.reply')
   if(obj.username=='juliusomo'){
           footer.innerHTML=`  <div class="user-delete-edit-card"> 
-            <div class="delete-edit-btn">
+            <div class="delete-edit-btn" onclick='toggleModal(event)'>
               <div class="delete-btn" >
                 <img src="./images/icon-delete.svg" alt="">
                 <span>Delete</span>
@@ -147,6 +148,8 @@ const newComment=(obj)=>{
         </div> 
       `
   }
+ 
+
   mainContainer.insertBefore(newFormCopy,mainForm)
   return newFormCopy
 }
