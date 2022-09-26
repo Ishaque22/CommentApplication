@@ -3,60 +3,32 @@
     padding: 0;
     box-sizing: border-box;
 }
-.attribution { 
-    font-size: 11px;
-    text-align: center;
- }
-.attribution a {
-    color: hsl(228, 45%, 44%);
-}
 body{
     background-color:  hsl(223, 19%, 93%);
     font-family: 'Rubik', sans-serif;
 }
-
-.main-container{
-    display: grid;
-    margin: 10%;
-    justify-content: center;
+p{
+    font-size: 0.9rem;
 }
-
-/* submit form design*/
-.comment-form-footer{
+.addCommentForm{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 1rem;
-  
-}
-.form{
-    display: grid;
+    position: relative;
     background-color: #fff;
-    width: 90vw;
-    justify-content: center; 
     border-radius: 10px;
-}
-
-.form-text-area{
-    width: 80vw;
-    margin-top: 4vw;
-    border-radius: 5px;
-    padding: 4%;
-}
-.comment-form-btn{
-    background-color: hsl(238, 40%, 52%);
-    color: #fff;
-    width: 6rem;
-    height: 2.6rem;
-    border-radius: 8px;  
-    border-style: none;   
-}
-#main-form-img{
+    margin-bottom: 0.4rem;
+    margin-left: 1%;
+    margin-right: 0%;
+    margin-top: 0%;
+  }
+.comment-img >img{
     width: 2rem;
 }
-
-/*modal design */
-
+.user-delete-edit-card{
+    display: flex;
+    width: 7rem;
+    justify-content: space-between;
+}
+/* background delete modal styling*/
 
 .background-modal{
     position: fixed;
@@ -97,6 +69,9 @@ body{
     gap: 1rem;
    
 }
+.remove{
+    display: none;
+}
 .delete{
     background-color: hsl(358, 79%, 66%);
    
@@ -105,155 +80,108 @@ body{
     background-color:  hsl(211, 10%, 45%);
     
 }
-.show{
+  .show{
     display: none;
 }
+.text-area{
+    padding:1%;
+   border-radius: 5px;
+   }
+  
 
-/* main comment section design*/
-
+/* mobile first technique styling*/
+.container{
+    margin:7vw;
+}
 .comment-card{
-    display: grid;
-    background-color: #fff;
-    margin-bottom: 0.5rem;
-    padding: 1rem;
-    border-radius: 8px;
-    
+    background-color: white;
+    border-radius: 5%;
+    margin-bottom: 3%;
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-right: 5%;
 }
-.comment-card-header{
+.comment-header{
     display: flex;
-    gap: 1rem;
-    
+    gap: 3vw;
+    align-items: center;
+    font-size: 0.9rem;
 }
-.comment-card-footer{
+.comment-footer{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.comment-card-button, .reply-button{
+.button{
     display: flex;
-    cursor: pointer;
-}
-.comment-card-button{
     align-items: center;
-    justify-content: space-around;
-    text-align: center;
+    justify-content: space-between;
+    padding: 2vw;
     width: 5rem;
     height: 2rem;
     background-color: hsl(228, 33%, 97%);
-    border-radius: 5px;
-    cursor: pointer;
-   
+    border-radius: 2vw;
+    margin-bottom: 2%;
+
+}
+.comment-footer{
+    margin-top: 5vw;
+}
+#reply{
+ padding-left: 0.5rem;   
 }
 
-.img img{
-    width: 2rem;
-}
-.comment-reply-card{
-    display: grid;
-    background-color: #fff;
-    justify-content: center; 
-    border-radius: 10px;
-    margin-bottom: 2px;
-  
-  
-}
 
-/* reply session*/
-
-.reply-append{
-    margin-left: 1rem;
-    position: relative;
+.form-footer>img{
+    width: 8vw;
+    height: 5%;
 }
-.reply-append::before{
-    content: "";
-    display: flex;
-    position:absolute;
-    left: -12px;
-    top: 0;
-    bottom: 20px;
-    border: 1px solid hsl(238, 40%, 52%);
-    opacity: 0.4;
-    border-width: 0 0 0 1px;
-    z-index: -1;
+.comment{
+    width: 95%;
+    margin-left: 1%;
 }
-.reply-form-text-area{
-    width: 20rem;
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-left: 0.2rem;
- }
- 
-
-.user-delete-edit-card{
-    display: flex;
-    gap: 1rem;
-}
-.card-image{
-    margin-top: 50%;
-    width: 2rem;
-}
-
-@media screen and (min-width:600px){
-    
-    .container-to-append{
-        margin-left: 15%;
-        margin-right: 15%;
-    }
-
-    #reply-form{
-      
-        margin-right: 15%;
-    }
-    
-    .reply-form-text-area{
-       width: 44rem;
-       margin-top: 1rem;
-       padding: 1rem;
-       border-radius: 5px;
-       margin-left: 0.2rem;
-    }
-    .reply-append{
+/*form-styling*/
+.form{
+    display: block;
+        width: 90%;
+        margin: 2% 4% 0% 5%;
        
-        margin-left: 10rem;
-        margin-right: 10.0rem;
-    }
-    .form{
-        margin-left: 9.3rem;
-        width: 71%;
-    }
-    .form-text-area{
-        width: 44rem;
-        padding: 0.4rem;
-        margin-top: 2%;
-    }
-   
-    .reply-append > .comment-card {
-            margin-top: 0.5rem;
-            width: 45rem;
-           overflow: visible;
-           margin-left: 2rem;
-    }
-    .reply-append::before{
-        content: "";
-        display: flex;
-        position:absolute;
-        left: 1rem;
-        top: 0;
-        bottom: 20px;
-        border: 1px solid hsl(238, 40%, 52%);
-        opacity: 0.4;
-        border-width: 0 0 0 1px;
-       z-index: -1;
-    }
-    .reply-footer{
-        width: 44.3rem;
-     display: flex;
-     justify-content: space-between;
-    }
+}
+.text-area{
+    width: 100%;
+}
+.form-btn{
+    width: 5rem;
+    background-color: hsl(238, 40%, 52%);
+    font-size: 0.8rem;
+}
 
-    /* modal desktop*/
-    .modal-content{
+.addCommentForm{
+    display: grid;
+}
+.addReplyForm{
+    display: grid;
+}
+.form-footer{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.form-img{
+    width: 15%;
+    height: auto;
+    margin-top: 2%;
+}
+
+.reply-card1{
+    margin-bottom: 20%;
+}
+/* Desktop design*/
+@media only screen and (min-width: 650px){
+
+    /*Modal content desktop styling*/
+     /* modal desktop*/
+     .modal-content{
         width: 18rem;
         border-radius: 0.4rem;
         padding: 0.4rem;
@@ -275,9 +203,137 @@ body{
     }
     
     .main-container > .comment-card{
-       width: 47rem;
-      margin-left: 10rem;
+       width: 45.4vw;
+      margin-left: 14.7vw;
        
     }
+    .reply-append > .comment-reply-card{
+        width: 45.5vw;
+        margin-left: 9.5vw;
+    }
 
+
+
+
+    /* comment card desktop styling*/
+
+    .comment-card{
+        width: 70%;
+       display: inline-block;
+        position: relative;
+        background-color: white;
+        border-radius: 2%;
+        margin: 0.5% 18%;
+        padding-top: 0%;
+        padding-bottom:0% ;
+       
+    }
+    .button{
+        display: grid;
+        position: absolute;
+        justify-content: center;
+        align-content:center ;
+        gap: 10%;
+      width: 2%;
+      left: 2%;
+      height: 60%;
+      top: 15%;
+      border-radius: 1em;  
+    }
+    .plus,.minus{
+        cursor: pointer;
+       
+    }
+    .size{
+        width: 10%;
+    }
+    
+    .comment-header{
+        margin-top: 2rem;
+        display: flex;
+        gap: 0.8em;
+    }
+
+     .reply{
+        position: absolute;
+        top: 2rem;
+        right: 7%;
+        cursor: pointer;
+        font-size: 0.9rem;
+    } */
+
+    .line{
+        display: flex;
+        position: relative; 
+        justify-content: center;
+        align-items: center;
+    }
+    .comment-p{
+        position: relative;
+        left: 5%;
+        width:fit-content;
+    }
+    .comment{
+        display: block;
+        width:fit-content;
+        margin-left: 1%;
+        
+    }
+    
+   .addCommentForm{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0.5% 18%;
+    background-color: #fff;
+    border-radius: 2%;
+  }
+
+
+   .form-btn{
+    position: absolute;
+    right: 5%;
+    width: 13%;
+    top: 15%;
+   }
+   .form{
+    width: 70%;
+    margin: 2% 10% 2% 0%;
+   }
+   .form-img{
+    position: absolute;
+    left: 3%;
+    width: 6%;
+    top: 10%;
+   }
+   .text-area{
+    border-radius: 2%;
+    border: 0.2px solid hsl(238, 40%, 52%);
+   }
+
+   .comment-img >img{
+    width: 3rem;
 }
+
+
+.form-footer>img{
+    width: 3vw;
+    height: auto;
+}
+}
+.main-form{
+    width: 100%;
+}
+.form-footer{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.show{
+    display: none;
+}
+
+
