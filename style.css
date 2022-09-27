@@ -28,15 +28,19 @@ p{
     width: 8rem;
     justify-content: space-between;
 }
+
+.btn-test, .edit-test{
+    pointer-events: none;
+}
 /* Reply styling*/
 .reply-card{
     position: relative;
 }
 
 .reply-card > .comment-card{
-    width: 77vw;
-    margin-left: 2rem;
-    margin-right: 3rem;
+    width: 79vw;
+    margin-left: 6.5vw;
+    margin-right: 1vw;
 }
 .reply-card::before{
     content: "";
