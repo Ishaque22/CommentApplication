@@ -6,6 +6,8 @@ let mainForm=document.querySelector('.main-form')
 let mainFormText=document.querySelector('.main-form-text-area')
 let userImg= document.getElementById('form-img')
 let modal =document.querySelector('.background-modal')
+let modalDelete= document.querySelector('.delete')
+let modalCancel= document.querySelector('.cancel')
 
 
 
@@ -87,7 +89,7 @@ newReplyCopy.querySelector('.username').textContent= `${obj.name}`
 newReplyCopy.querySelector('.date').textContent= `${obj.date}`
 newReplyCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
 newReplyCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
-
+let commentCard=newReplyCopy.querySelector('.comment-card')
 let replyForm=newReplyCopy.getElementById('comment-reply-card');
 let btn=newReplyCopy.querySelector('.reply')
 
@@ -97,14 +99,15 @@ let footerRelpy= newReplyCopy.querySelector('.reply')
 if(obj.name=='juliusomo'){
   footerRelpy.innerHTML=`  <div class="user-delete-edit-card"> 
     <div class="delete-edit-btn">
-      <div class="delete-btn" onclick='toggleModal(event)'>
-        <img src="./images/icon-delete.svg" alt="">
-        <span>Delete</span>
+     <div class="delete-btn" >
+          
+        <img class='btn-test' src="./images/icon-delete.svg" alt="">
+        <span class='delete-btn-check' onclick='deleteFunc(event)'>Delete</span>
       </div>
     </div>
     <div class="edit-btn">
-      <img src="./images/icon-edit.svg" alt="">
-        <span>Edit</span>
+      <img class='edit-test'  src="./images/icon-edit.svg" alt="">
+        <span >Edit</span>
     </div>
 </div> 
 `
@@ -115,12 +118,46 @@ else{
   }) 
 }    
 
+/*  deleteFunc =(e)=>{
+  let target=e.target
+  let testTarget=target.parentNode.parentNode.parentNode.parentNode.parentNode.parentElement
+  console.log(testTarget)
+
+if(confirm('Are you serious aout deleting')){
+  if(target.classList[0] === 'delete-btn-check'){
+    testTarget.remove()
+  
+      }
+  }  
+} */
+
+deleteFunc =(e)=>{
+  e.preventDefault()
+  let target=e.target
+  let testTarget=target.parentNode.parentNode.parentNode.parentNode.parentNode.parentElement
+  console.log(testTarget)
+  modal.classList.toggle('remove');
+
+   /*  if(target.classList[0] === 'delete-btn-check'){
+        testTarget.remove()
+        } */
+
+      } 
+
+
+
 return newReplyCopy
 
 
 }
 
 
+/* const deleteFunc =()=>{
+  if(confirm('Do you want to do this test for real')){
+    window.location= 'https://google.com'
+  }
+}
+ */
 //creating a new comment
 const newComment=(obj)=>{
 
@@ -135,10 +172,10 @@ const newComment=(obj)=>{
   let footer= newFormCopy.querySelector('.reply')
   if(obj.username=='juliusomo'){
           footer.innerHTML=`  <div class="user-delete-edit-card"> 
-            <div class="delete-edit-btn" onclick='toggleModal(event)'>
+            <div class="delete-edit-btn">
               <div class="delete-btn" >
                 <img src="./images/icon-delete.svg" alt="">
-                <span>Delete</span>
+                <span class='delete-btn-check' onclick='deleteFunc(event)'>Delete</span>
               </div>
             </div>
             <div class="edit-btn">
@@ -200,8 +237,20 @@ allComments.forEach(newComment)
 }
     )}
 
+function modalDel(e){
+  e.preventDefault()
+  let newTarget=e.target
+  console.log(newTarget)
+  
+  modal.classList.add('remove')
 
-    const toggleModal=(e)=>{
-      modal.classList.toggle('remove')
 }
-    
+
+modalCancel.addEventListener('click', (e)=>{
+  e.preventDefault()
+  let newTarget=e.target
+  console.log(newTarget)
+  
+  modal.classList.add('remove')
+  
+})
