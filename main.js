@@ -9,7 +9,6 @@ let userImg= document.getElementById('form-img')
 
 
 
-
 let url= './data.json';
  fetch(url)
  .then((res)=>res.json())
@@ -261,7 +260,7 @@ const modalDelete=(e)=>{
       console.log(target)
       let testTarget=target.parentNode.parentNode.parentNode.parentNode.parentNode.parentElement
       if(target.classList[0] === 'delete-btn-check'){
-        removeLocalStorageItem(testTarget)
+        removeLocalStorageItem()
         testTarget.remove()
        
           }
@@ -272,15 +271,9 @@ const modalDelete=(e)=>{
   })
 }
 
-function replySubmit(e){
-  e.preventDefault()
-  console.log('hello testing me')
-  let test= document.createElement('div')
-  test.innerHTML=`<h1>Hello World</h1>`
-  mainContainer.append(test)
-}
 
-function removeLocalStorageItem(testTarget){
+
+function removeLocalStorageItem(){
   let allComments
   if(localStorage.getItem("finalComm")===null){
     allComments=[]
@@ -290,8 +283,16 @@ function removeLocalStorageItem(testTarget){
   }
   // allComments.splice(allComments.indexOf(newComment))
 
-  allComments.splice(allComments.indexOf(testTarget,1))
+  allComments.splice(allComments.indexOf(newComment,0))
  
   localStorage.setItem("finalComm", JSON.stringify(allComments));
-    console.log(testTarget)
+    
+}
+
+function replySubmit(e){
+  e.preventDefault()
+  console.log('hello testing me')
+ let target=e.target.parentElement.parentElement.parentElement.parentElement
+ console.log(target)
+  target.classList.add('show')
 }
