@@ -261,6 +261,7 @@ const modalDelete=(e)=>{
       console.log(target)
       let testTarget=target.parentNode.parentNode.parentNode.parentNode.parentNode.parentElement
       if(target.classList[0] === 'delete-btn-check'){
+        removeLocalStorageItem(testTarget)
         testTarget.remove()
        
           }
@@ -279,3 +280,18 @@ function replySubmit(e){
   mainContainer.append(test)
 }
 
+function removeLocalStorageItem(testTarget){
+  let allComments
+  if(localStorage.getItem("finalComm")===null){
+    allComments=[]
+  }
+  else{
+    allComments= JSON.parse(localStorage.getItem("finalComm"))
+  }
+  // allComments.splice(allComments.indexOf(newComment))
+
+  allComments.splice(allComments.indexOf(testTarget,1))
+ 
+  localStorage.setItem("finalComm", JSON.stringify(allComments));
+    console.log(testTarget)
+}
