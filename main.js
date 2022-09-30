@@ -5,9 +5,6 @@ let mainContainer=document.querySelector('.container')
 let mainForm=document.querySelector('.main-form')
 let mainFormText=document.querySelector('.main-form-text-area')
 let userImg= document.getElementById('form-img')
-let modal =document.querySelector('.background-modal')
-let modalDelete= document.querySelector('.delete')
-let modalCancel= document.querySelector('.cancel')
 
 
 
@@ -18,6 +15,7 @@ let url= './data.json';
  .then((res)=>res.json())
  .then((data)=>{
     userImg.src=`${data.currentUser.image.webp }`
+   
 })
 
 
@@ -27,26 +25,32 @@ fetch(url)
 .then((data)=>{
     data.comments.map((data)=>{
         let obj={
+            id:data.id,
             name:data.user.username,
             date:data.createdAt,
             image:data.user.image.png,
-            content:data.content
+            content:data.content,
+            score:data.score
 
         }
 
         comments(obj);
+       
+       
         data.replies.forEach((data)=>{
           let obj={
+              id:data.id,
               name:data.user.username,
               date:data.createdAt,
               image:data.user.image.png,
-              content:data.content
+              content:data.content,
+              score:data.score
           }
           console.log(obj)
-         replyAppend.append(reply(obj))
+          reply(obj);
+        
          
       })
-
        
       })
     })
@@ -54,13 +58,26 @@ fetch(url)
 let cloneCopy;
 let replyAppend;
 let replyBtnForm;
+let replyNewAppend;
 function comments(obj){
   cloneCopy=copyTemplate.cloneNode(true)
- 
+
   cloneCopy.querySelector('.username').textContent= `${obj.name}`
   cloneCopy.querySelector('.date').textContent= `${obj.date}`
   cloneCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
   cloneCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
+let newScore= cloneCopy.getElementById('score');
+newScore.textContent= `${obj.score}`
+
+  cloneCopy.querySelector(".plus").addEventListener('click',()=>{
+    newScore.innerHTML=`${obj.score+=1}`
+  })
+
+  cloneCopy.querySelector(".minus").addEventListener('click',()=>{
+    newScore.innerHTML=`${obj.score--}`
+    if(obj.score<=0) obj.score = 0
+  })
+
  replyAppend=cloneCopy.querySelector('.reply-card')
 
  let replyForm=cloneCopy.getElementById('comment-reply-card');
@@ -70,18 +87,14 @@ function comments(obj){
   replyForm.classList.toggle('show')
 }) 
 
+
+
   main.append(cloneCopy)   
 
-   
     mainFormText.value=''
-
-   
     
 }
     
-
-
-
 
 const reply=obj=>{
   let newReplyCopy=copyTemplate.cloneNode(true);
@@ -89,7 +102,20 @@ newReplyCopy.querySelector('.username').textContent= `${obj.name}`
 newReplyCopy.querySelector('.date').textContent= `${obj.date}`
 newReplyCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
 newReplyCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
-let commentCard=newReplyCopy.querySelector('.comment-card')
+let newScore=newReplyCopy.getElementById('score')
+
+
+newScore.textContent= `${obj.score}`
+newReplyCopy.querySelector(".plus").addEventListener('click',()=>{
+  newScore.innerHTML=`${obj.score+=1}`
+})
+
+newReplyCopy.querySelector(".minus").addEventListener('click',()=>{
+  newScore.innerHTML=`${obj.score--}`
+  if(obj.score<=0) obj.score = 0
+})
+
+
 let replyForm=newReplyCopy.getElementById('comment-reply-card');
 let btn=newReplyCopy.querySelector('.reply')
 
@@ -99,10 +125,9 @@ let footerRelpy= newReplyCopy.querySelector('.reply')
 if(obj.name=='juliusomo'){
   footerRelpy.innerHTML=`  <div class="user-delete-edit-card"> 
     <div class="delete-edit-btn">
-     <div class="delete-btn" >
-          
+      <div class="delete-btn" >   
         <img class='btn-test' src="./images/icon-delete.svg" alt="">
-        <span class='delete-btn-check' onclick='deleteFunc(event)'>Delete</span>
+        <span class='delete-btn-check' onclick='modalDelete(event);'>Delete</span>
       </div>
     </div>
     <div class="edit-btn">
@@ -117,48 +142,10 @@ else{
      replyForm.classList.toggle('show')
   }) 
 }    
-
-/*  deleteFunc =(e)=>{
-  let target=e.target
-  let testTarget=target.parentNode.parentNode.parentNode.parentNode.parentNode.parentElement
-  console.log(testTarget)
-
-if(confirm('Are you serious aout deleting')){
-  if(target.classList[0] === 'delete-btn-check'){
-    testTarget.remove()
-  
-      }
-  }  
-} */
-
-deleteFunc =(e)=>{
-  e.preventDefault()
-  let target=e.target
-  let testTarget=target.parentNode.parentNode.parentNode.parentNode.parentNode.parentElement
-  console.log(testTarget)
-  modal.classList.toggle('remove');
-
-   /*  if(target.classList[0] === 'delete-btn-check'){
-        testTarget.remove()
-        } */
-
-      } 
-
-
-
-return newReplyCopy
-
+replyAppend.append(newReplyCopy)
 
 }
 
-
-/* const deleteFunc =()=>{
-  if(confirm('Do you want to do this test for real')){
-    window.location= 'https://google.com'
-  }
-}
- */
-//creating a new comment
 const newComment=(obj)=>{
 
   let newFormCopy=copyTemplate.cloneNode(true);
@@ -167,7 +154,17 @@ const newComment=(obj)=>{
   newFormCopy.querySelector('.date').textContent= `${obj.date}`
   newFormCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
   newFormCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
-  let replyForm=newFormCopy.getElementById('comment-reply-card');
+  let newScore=newFormCopy.getElementById('score')
+  newScore.textContent= `${obj.score}`
+
+  newFormCopy.querySelector(".plus").addEventListener('click',()=>{
+    newScore.innerHTML=`${obj.score+=1}`
+  })
+  
+  newFormCopy.querySelector(".minus").addEventListener('click',()=>{
+    newScore.innerHTML=`${obj.score--}`
+    if(obj.score<=0) obj.score = 0
+  })
  
   let footer= newFormCopy.querySelector('.reply')
   if(obj.username=='juliusomo'){
@@ -175,7 +172,7 @@ const newComment=(obj)=>{
             <div class="delete-edit-btn">
               <div class="delete-btn" >
                 <img src="./images/icon-delete.svg" alt="">
-                <span class='delete-btn-check' onclick='deleteFunc(event)'>Delete</span>
+                <span class='delete-btn-check'  onclick='modalDelete(event);'>Delete</span>
               </div>
             </div>
             <div class="edit-btn">
@@ -190,6 +187,8 @@ const newComment=(obj)=>{
   mainContainer.insertBefore(newFormCopy,mainForm)
   return newFormCopy
 }
+
+
 
 
 const allComments= JSON.parse(localStorage.getItem("finalComm")) || []
@@ -215,7 +214,6 @@ allComments.forEach(newComment)
     console.log('submit has been triggered')
     
 
-
     fetch(url)
     .then((res)=>res.json())
     .then((data)=>{
@@ -229,28 +227,45 @@ allComments.forEach(newComment)
         mainFormText.value
     )
 
-   
     mainFormText.value=''
 
-   
     mainContainer.insertBefore(newComment(newComments),mainForm)
 }
     )}
 
-function modalDel(e){
-  e.preventDefault()
-  let newTarget=e.target
-  console.log(newTarget)
-  
-  modal.classList.add('remove')
 
+const modalDelete=(e)=>{
+  let target=e.target
+
+  let modalContainer=document.getElementById('modal-container')
+  modalContainer.classList.toggle('remove')
+
+  modalContainer.querySelector('.cancel').addEventListener('click',(e)=>{
+    e.preventDefault()
+    modalContainer.classList.add('remove')
+
+  })
+
+  modalContainer.querySelector('.delete').addEventListener('click',(e)=>{
+    e.preventDefault()
+      console.log('hello')
+      console.log(target)
+      let testTarget=target.parentNode.parentNode.parentNode.parentNode.parentNode.parentElement
+      if(target.classList[0] === 'delete-btn-check'){
+        testTarget.remove()
+       
+          }
+         
+  console.log(testTarget)
+  modalContainer.classList.add('remove')
+
+  })
 }
 
-modalCancel.addEventListener('click', (e)=>{
+function replySubmit(e){
   e.preventDefault()
-  let newTarget=e.target
-  console.log(newTarget)
-  
-  modal.classList.add('remove')
-  
-})
+  console.log('hello testing me')
+  let test= document.createElement('div')
+  test.innerHTML=`<h1>Hello World</h1>`
+  mainContainer.append(test)
+}
