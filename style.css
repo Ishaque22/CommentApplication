@@ -33,10 +33,21 @@ p{
     pointer-events: none;
 }
 /* Reply styling*/
+#reply{
+    color: hsl(238, 40%, 52%)
+}
+.edit-btn{
+    color:hsl(238, 40%, 52%) ;
+}
 .reply-card{
     position: relative;
 }
-
+.username{
+    font-weight: 600;
+}
+.date, .comment-card-content{
+    color:hsl(211, 10%, 45%);
+}
 .reply-card > .comment-card{
     width: 79vw;
     margin-left: 6.5vw;
@@ -292,7 +303,7 @@ p{
 
      .reply{
         position: absolute;
-        top: 1.5rem;
+        top: 1.58rem;
         right: 7%;
         cursor: pointer;
         font-size: 0.9rem;
