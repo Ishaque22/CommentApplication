@@ -5,78 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  
+  
   <title>Frontend Mentor | Interactive comments section</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+
 </head>
 <body>
+    <div class="container">
+        <div class="comment-container" id="comment-container">
+          <template id="container-template" class="container">
+          <div class="comment-card" id="comment-card">
+            <div class="comment-header comment-p line">
+              <div class="comment-img">
+                <img class='size' src="./images/favicon-32x32.png" alt="">
+              </div>
+              <div class="username ">JohnDoe</div>
+              <div class="date ">1 month ago</div>
+            </div>
+            <p class="comment comment-p comment-card-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+              Veniam doloribus corrupti nihil libero officiis,
+               , obcaecati perferendis sapiente rem! Aut fuga ipsum porro
+               expedita iusto earum consequuntur ab totam vitae.</p>
+               <div class="comment-footer">
+                <div class="button">
+                  <div ><svg class='plus'  width="14" height="11" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z" fill="#C5C6EF"/></svg></div>
+                    <span id="score"></span>
+                <div><svg class="minus" width="11" height="3" xmlns="http://www.w3.org/2000/svg"><path d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z" fill="#C5C6EF"/></svg></div>
+                </div>
+                <div class="reply" ><svg width="14" height="13" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6"/>
+                </svg><span id="reply">Reply</span></div>
+               </div>
+          </div>
 
-  <template class="reply-input-template">
-    <div class="reply-input container">
-      <img src="images/avatars/image-juliusomo.webp" alt="" class="usr-img">
-      <textarea class="cmnt-input" placeholder="Add a comment..."></textarea>
-      <button class="bu-primary">REPLY</button>
+          <div id="comment-reply-card" class="comment-reply-card form-edit show">
+            <div class="addCommentForm">
+              <form class="form">
+                <textarea class='text-area main-form-text-area' type="text" cols="2" rows="5" id="bodyText"  placeholder="Add a reply"></textarea>
+                <div class="form-footer reply-form-footer">
+                <button type="submit" class="form-btn reply-btn" onclick="replySubmit(event)">REPLY</button>
+                <img id='form-img' class='form-img' src="./images/avatars/image-juliusomo.png" alt="" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+          <div class="reply-card"></div>
+        </template>
+        </div>
+        
+        
+        <!--Comment form design-->
+      <div class="main-form form-edit">
+        <div class="addCommentForm">
+          <form class="form">
+            <textarea class='text-area main-form-text-area' type="text" cols="2" rows="5" id="bodyText"  placeholder="Add a comment"></textarea>
+            <div class="form-footer">
+            <button type="submit" class="form-btn">SEND</button>
+            <img id='form-img' class='form-img' src="./images/favicon-32x32.png" alt="" />
+            </div>
+          </form>
+        </div>
     </div>
-  </template>
-
-  <template class="comment-template">
-    <div class="comment-wrp">
-      <div class="comment container">
-        <div class="c-score">
-          <img src="images/icon-plus.svg" alt="plus" class="score-control score-plus">
-          <p class="score-number">5</p>
-          <img src="images/icon-minus.svg" alt="minus" class="score-control score-minus">
-        </div>
-        <div class="c-controls">
-          <a  class="delete"><img src="images/icon-delete.svg" alt="" class="control-icon">Delete</a>
-          <a  class="edit"><img src="images/icon-edit.svg" alt="" class="control-icon">Edit</a>
-          <a  class="reply"><img src="images/icon-reply.svg" alt="" class="control-icon">Reply</a>
-        </div>
-        <div class="c-user">
-          <img src="images/avatars/image-maxblagun.webp" alt="" class="usr-img">
-          <p class="usr-name">maxblagun</p>
-          <p class="cmnt-at">2 weeks ago</p>    
-        </div>
-        <p class="c-text">
-          <span class="reply-to"></span>
-          <span class="c-body"></span>
+  </div>
+    
+    <!--
+      Modal Session delete button 
+    -->
+    <div id="modal-container" class="background-modal remove">
+      <form action>
+      <div class="modal-content">
+        <h3>Delete comment</h3>
+        <p id='modal-text' class="modal-text">Are you sure you want to delete this
+          comment? This will remove the comment and can't be undone
         </p>
-      </div><!--comment-->
-      <div class="replies comments-wrp">
-      </div><!--replies-->
-    </div>
-  </template>
-<main>
-  <div class="comment-section">
-
-    <div class="comments-wrp">
-
-    </div> <!--commentS wrapper-->
-  <div class="reply-input container">
-      <img src="images/avatars/image-juliusomo.webp" alt="" class="usr-img">
-      <textarea class="cmnt-input" placeholder="Add a comment..."></textarea>
-      <button class="bu-primary">SEND</button>
-    </div> <!--reply input-->
-  </div> <!--comment sectio-->
+        <div class="modal-button">
+        <button class="cancel modalBtn" >NO, CANCEL</button>
+        <button  class="delete modalBtn">YES, DELETE</button>
+        </div>
   
-  <div class="modal-wrp invisible">
-    <div class="modal container">
-      <h3>Delete comment</h3>
-      <p>Are you sure you want to delete this comment? This will remove the comment and cant be undone</p>
-      <button class="yes">YES,DELETE</button>
-      <button class="no">NO,CANCEL</button>
+      </div>
+      </form>
     </div>
-  </div>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="https://sohaibseg.github.io">SohaibSEG</a>.
-  </div>
-</main>
-  <script src="main.js"></script>
-</body>
+    
+
+    
+  <script  src="main.js" ></script>
+ 
+ </body>
 </html>
