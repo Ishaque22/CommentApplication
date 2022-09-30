@@ -30,7 +30,8 @@ fetch(url)
             date:data.createdAt,
             image:data.user.image.png,
             content:data.content,
-            score:data.score
+            score:data.score,
+            
 
         }
 
@@ -44,8 +45,10 @@ fetch(url)
               date:data.createdAt,
               image:data.user.image.png,
               content:data.content,
-              score:data.score
+              score:data.score,
+              replyTo:data.replyingTo
           }
+          console.log(obj.replyTo)
           console.log(obj)
           reply(obj);
         
@@ -101,7 +104,8 @@ const reply=obj=>{
 newReplyCopy.querySelector('.username').textContent= `${obj.name}`
 newReplyCopy.querySelector('.date').textContent= `${obj.date}`
 newReplyCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
-newReplyCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
+newReplyCopy.querySelector('.comment-card-content').innerHTML= `<strong class='replyTo'>@${obj.replyTo}</strong>  ${obj.content}`
+
 let newScore=newReplyCopy.getElementById('score')
 
 
@@ -120,9 +124,10 @@ let replyForm=newReplyCopy.getElementById('comment-reply-card');
 let btn=newReplyCopy.querySelector('.reply')
 
 
-
+let you= newReplyCopy.querySelector('.you')
 let footerRelpy= newReplyCopy.querySelector('.reply')
 if(obj.name=='juliusomo'){
+  you.classList.remove('remove')
   footerRelpy.innerHTML=`  <div class="user-delete-edit-card"> 
     <div class="delete-edit-btn">
       <div class="delete-btn" >   
@@ -165,9 +170,11 @@ const newComment=(obj)=>{
     newScore.innerHTML=`${obj.score--}`
     if(obj.score<=0) obj.score = 0
   })
- 
+
+  let you= newFormCopy.querySelector('.you')
   let footer= newFormCopy.querySelector('.reply')
   if(obj.username=='juliusomo'){
+          you.classList.remove('remove')
           footer.innerHTML=`  <div class="user-delete-edit-card"> 
             <div class="delete-edit-btn">
               <div class="delete-btn" >
@@ -182,6 +189,8 @@ const newComment=(obj)=>{
         </div> 
       `
   }
+ 
+  
  
 
   mainContainer.insertBefore(newFormCopy,mainForm)
@@ -269,3 +278,4 @@ function replySubmit(e){
   test.innerHTML=`<h1>Hello World</h1>`
   mainContainer.append(test)
 }
+
