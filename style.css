@@ -1,73 +1,248 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+:root{
+    --Dark-blue: hsl(212, 24%, 26%);
+    --Grayish-Blue: hsl(211, 10%, 45%);
+    --Light-gray: hsl(223, 19%, 93%);
+    --Very-light-gray: hsl(228, 33%, 97%);
+    --White: hsl(0, 0%, 100%);
+    /*primary*/
+    --Moderate-blue: hsl(238, 40%, 52%);
+    --Soft-Red: hsl(358, 79%, 66%);
+    --Light-grayish-blue: hsl(239, 57%, 85%);
+    --Pale-red: hsl(357, 100%, 86%);
 }
-body{
-    background-color:  hsl(223, 19%, 93%);
-    font-family: 'Rubik', sans-serif;
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik';
 }
 p{
-    font-size: 0.9rem;
+    line-height: 1.5;
 }
-.addCommentForm{
+body{
+    height: 100%;
+    width: 100%;
+    padding-top: 3rem;
+    background-color: var(--Very-light-gray);
+}
+a{
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+}
+button{
+    cursor: pointer;
+}
+button:hover{
+    filter: saturate(80%);
+}
+.bu-primary{
+    background-color: var(--Moderate-blue);
+    color: var(--White);
+    border: none;
+    padding: .75rem 1.5rem;
+    border-radius: 4px;
+}
+.comment-section{
+    padding: 0 1rem;
+}
+.container{
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: var(--White);
+}
+.comments-wrp {
     display: flex;
-    position: relative;
-    background-color: #fff;
-    border-radius: 10px;
-    margin-bottom: 0.4rem;
-    margin-left: 1%;
-    margin-right: 0%;
-    margin-top: 0%;
-  }
-.comment-img >img{
+    flex-direction: column;
+}
+.comment-section{
+    max-width: 75ch;
+    margin: auto;
+    margin-top: 1rem;
+}
+.comment{
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-areas: 
+        "score user controls"
+        "score comment comment"
+        "score comment comment"
+    ;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    row-gap: 1rem;
+    color: var(--Grayish-Blue);
+}
+
+.c-score{
+    color: var(--Moderate-blue);
+    font-weight: 500;
+    grid-area: score;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding: .75rem;
+    padding-top: .5rem;
+    width: 1rem;
+    box-sizing: content-box;
+    background-color: var(--Very-light-gray);
+    border-radius: 8px;
+    align-self: flex-start;
+}
+.score-control{
+    width: 100%;
+    cursor: pointer;
+    object-fit: scale-down;
+}
+.c-text{
+    grid-area: comment;
+    width: 100%;
+}
+.c-user{
+    width: 100%;
+    grid-area: user;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.usr-name{
+    color: var(--Dark-blue);
+    font-weight: 700;
+}
+.usr-img{
+    height: 2rem;
     width: 2rem;
 }
-.user-delete-edit-card{
+
+.c-controls{
     display: flex;
-    width: 8rem;
-    justify-content: space-between;
+    gap: 1rem;
+    color: var(--Moderate-blue);
+    grid-area: controls;
+    align-self: center;
+    justify-self: flex-end;
+}
+.c-controls a{
+    align-items: center;
+}
+.edit , .reply{
+    color: var(--Moderate-blue);
+}
+.edit{
+    display: none;
+}
+.delete{
+    color: var(--Soft-Red);
+    display: none;
+}
+.control-icon{
+    margin-right: .5rem;
 }
 
-.btn-test, .edit-test{
-    pointer-events: none;
-}
-/* Reply styling*/
-#reply{
-    color: hsl(238, 40%, 52%)
-}
-.edit-btn{
-    color:hsl(238, 40%, 52%) ;
-}
-.reply-card{
-    position: relative;
-}
-.username{
-    font-weight: 600;
-}
-.date, .comment-card-content{
-    color:hsl(211, 10%, 45%);
-}
-.reply-card > .comment-card{
-    width: 79vw;
-    margin-left: 6.5vw;
-    margin-right: 1vw;
-}
-.reply-card::before{
-    content: "";
+.replies{
     display: flex;
-    position:absolute;
-    left:3vw;
-    top: 0;
-    bottom: 20px;
-    border: 1px solid hsl(238, 40%, 52%);
-    opacity: 0.4;
-    border-width: 0 0 0 1px;
-    z-index: -1;
+    margin-left: 2.5rem;
+    padding-left: 2.4rem;
+    border-left: 1px solid var(--Light-grayish-blue);
 }
-/* background delete modal styling*/
 
-.background-modal{
+.reply-to{
+    color: var(--Moderate-blue);
+    font-weight: 500;
+}
+
+.reply-input{
+    display: grid;
+    margin-bottom: 1rem;
+    grid-template-areas: "avatar input button";
+    grid-template-columns: min-content auto min-content;
+    justify-items: center;
+    gap: 1rem;
+    min-height: 9rem;
+}
+.reply-input img{
+    grid-area: avatar;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.reply-input button{
+    grid-area: button;
+    align-self: flex-start;
+}
+.reply-input textarea{
+    grid-area: input;
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid var(--Light-gray);
+    border-radius: 4px;
+    resize: none;
+}
+
+.this-user .usr-name::after{
+    font-weight: 400;
+    content: "you";
+    color: var(--White);
+    background-color: var(--Moderate-blue);
+    padding: 0 .4rem;
+    padding-bottom: .2rem;
+    font-size: .8rem;
+    margin-left: .5rem;
+    border-radius: 2px;
+}
+
+.this-user .reply{
+    display: none;
+}
+.this-user .edit , .this-user .delete{
+    display: flex;
+}
+
+@media screen and (max-width:640px) {
+    .container{
+        padding: .75rem;
+    }
+    .replies{
+        padding-left: 1rem;
+        margin-left: .5rem;
+    }
+    .comment{
+        grid-template-areas: 
+            "user user user"
+            "comment comment comment"
+            "score ... controls"
+        ;
+
+        gap: .5rem;
+    }
+    .c-score{
+        flex-direction: row;
+        width: auto;
+    }
+    .reply-input{
+        grid-template-areas: 
+            "input input input"
+            "avatar ... button"
+        ;
+        grid-template-rows: auto min-content;
+        align-items: center;
+        gap: .5rem;
+    }
+    .reply-input img{
+        height: 2rem;
+        width: 2rem;
+    }
+    .reply-input textarea{
+        height: 6rem;
+        padding: .5rem;
+        align-self: stretch;
+    }
+}
+
+
+.modal-wrp{
     position: fixed;
     top: 0;
     left: 0;
@@ -79,343 +254,42 @@ p{
     background-color: rgba(0,0,0,.3);
 }
 
-.modal-content{
-    width: 17rem;
-    background-color: white;
-    border-radius: 5px;
-    padding: 1rem;
-}
-
-.modal-content ,p{
-    margin-top: 3vw;
-    margin-bottom: 3vw;
-}
-.modalBtn{
-    width: 9rem;
-    font-size: 0.9rem;
-    color: #fff;
-    text-align: center;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border-radius: 0.5rem;
-    border-style: none;
-    
-}
-.modal-button{
-    display: flex;
+.modal{
+    padding: 1.5rem;
+    max-width: 32ch;
+    display: grid;
     gap: 1rem;
-   
-}
-.remove{
-    display: none;
-}
-.delete{
-    background-color: hsl(358, 79%, 66%);
-   
-}
-.cancel{
-    background-color:  hsl(211, 10%, 45%);
-    
-}
-  .show{
-    display: none;
-}
-.text-area{
-    padding:1%;
-   border-radius: 5px;
-   }
-  
-
-/* mobile first technique styling*/
-.container{
-    margin:7vw;
-}
-.comment-card{
-    background-color: white;
-    border-radius: 5px;
-    margin-bottom: 3%;
-    padding-left: 5%;
-    padding-top: 5%;
-    padding-right: 5%;
-    
-}
-.comment-header{
-    display: flex;
-    gap: 3vw;
-    align-items: center;
-    font-size: 0.9rem;
-}
-.comment-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2vw;
-    width: 5rem;
-    height: 2rem;
-    background-color: hsl(228, 33%, 97%);
-    border-radius: 2vw;
-    margin-bottom: 2%;
-
-}
-.comment-footer{
-    margin-top: 2vw;
-}
-#reply{
- padding-left: 0.5rem;   
+    grid-template-areas: 
+    "heading heading"
+    "body body"
+    "no yes";
 }
 
-
-.form-footer>img{
-    width: 8vw;
-    height: 5%;
-}
-.comment{
-    width: 95%;
-    margin-left: 1%;
-}
-/*form-styling*/
-.form{
-    display: block;
-        width: 90%;
-        margin: 2% 4% 0% 5%;
-       
-}
-.text-area{
-    width: 100%;
-}
-.form-btn{
-    width: 5rem;
-    background-color: hsl(238, 40%, 52%);
-    font-size: 0.8rem;
-}
-
-.addCommentForm{
-    display: grid;
-}
-.addReplyForm{
-    display: grid;
-}
-.form-footer{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-}
-.form-img{
-    width: 15%;
-    height: auto;
-    margin-top: 2%;
-}
-.form-btn{
-    background-color: hsl(238, 40%, 52%);
-    color: #fff;
-    width: 5.5rem;
-    height: 2.3rem;
-    border-radius: 8px;  
-    border-style: none; 
-}
-.reply-card1{
-    margin-bottom: 20%;
-}
-/* Desktop design*/
-@media only screen and (min-width: 700px){
-
-    /*Modal content desktop styling*/
-     /* modal desktop*/
-     .modal-content{
-        width: 18rem;
-        border-radius: 0.4rem;
-        padding: 0.4rem;
-    }
-    .modalBtn{
-        width: 9rem;
-        font-size: 0.9rem;
-        color: #fff;
-        text-align: center;
-        padding: 1vw;
-        margin-top: 1vw;
-        border-radius: 0.5rem;
-        border-style: none;
-        
-    }
-    .modal-content ,p{
-        margin-top: 1vw;
-        margin-bottom: 1vw;
-    }
-    
-    .main-container > .comment-card{
-       width: 45.4vw;
-      margin-left: 14.7vw;
-       
-    }
-    .reply-append > .comment-reply-card{
-        width: 45.5vw;
-        margin-left: 9.5vw;
-    }
-
-
-
-
-    /* comment card desktop styling*/
-
-    .comment-card{
-        width: 60vw;
-       display: inline-block;
-        position: relative;
-        background-color: white;
-        border-radius: 5px;
-        margin: 0.5% 17%;
-        padding-top: 0%;
-        padding-bottom:0% ;
-       
-    }
-    .button{
-        display: grid;
-        position: absolute;
-        justify-content: center;
-        align-content:center ;
-        gap: 6.5%;
-      width:2.5rem;
-      height: 70%;
-      max-height: 5rem;
-      left: 2%;
-     padding: 1em;
-      top: 1rem;
-      border-radius: 8px;  
-    }
-    .plus,.minus{
-        cursor: pointer;
-       
-    }
-    .size{
-        width: 10%;
-    }
-    
-    .comment-header{
-        margin-top: 1rem;
-        display: flex;
-        gap: 0.8em;
-    }
-
-     .reply{
-        position: absolute;
-        top: 1.58rem;
-        right: 7%;
-        cursor: pointer;
-        font-size: 0.9rem;
-    } */
-
-    .line{
-        display: flex;
-        position: relative; 
-        justify-content: center;
-        align-items: center;
-    }
-    .comment-p{
-        position: relative;
-        left: 5%;
-        width:fit-content;
-    }
-    .comment{
-        display: block;
-        width:fit-content;
-        margin-left: 1%;
-        
-    }
-    
-   .addCommentForm{
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 60vw;
-    margin: 0.5% 17%;
-    background-color: #fff;
-    border-radius: 5px;
-   
-  }
-
-
-   .form-btn{
-    position: absolute;
-    right: 5%;
-    width: 13%;
-    top: 15%;
-   }
-   .form{
-    width: 70%;
-    margin: 2% 10% 2% 0%;
-    
-  
-   }
-   .form-img{
-    position: absolute;
-    left: 3%;
-    width: 6%;
-    top: 10%;
-   }
-   .text-area{
-    border-radius: 5px;
-    border: 0.2px solid hsl(238, 40%, 52%);
-    
-   }
-
-   .comment-img >img{
-    width: 3rem;
-}
-
-
-.form-footer>img{
-    width: 3vw;
-    height: auto;
-
-}
-.reply-card > .comment-card{
-    width: 56vw;
-    margin-left: 19.2vw;
-    margin-right: 10vw;
-    
-}
-.reply-card::before{
-    content: "";
-    display: flex;
-    position:absolute;
-    left: 18vw;
-    top: 0;
-    bottom: 20px;
-    border: 1px solid hsl(238, 40%, 52%);
-    opacity: 0.4;
-    border-width: 0 0 0 1px;
-   z-index: -1;
-}
-.container{
-    margin-left:3vw;
-}
-.comment-img>img{
-    width: 2rem;
-}
-.user-delete-edit-card{
-    display: flex;
-    width: 7rem;
-    justify-content: space-between;
-}
-}
-.main-form{
-    width: 100%;
-  
-}
-.form-footer{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-}
-
-.show{
+.invisible{
     display: none;
 }
 
-
+.modal h3{
+    grid-area: heading;
+    color: var(--Dark-blue);
+}
+.modal button{
+    color: var(--White);
+    padding: .75rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+}
+.modal p{
+    grid-area: body;
+    color: var(--Grayish-Blue);
+    line-height: 1.5;
+}
+.modal .yes{
+    grid-area: yes;
+    background-color: var(--Soft-Red);
+}
+.modal .no{
+    background-color: var(--Grayish-Blue);
+    grid-area: no;
+}
