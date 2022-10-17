@@ -202,6 +202,20 @@ color: hsl(238, 40%, 52%);
     font-weight: 700;
 }
 
+
+.replies-container::before{
+    content: "";
+    display: flex;
+    position:absolute;
+    left:-3vw;
+    top: 0;
+    bottom: 20px;
+    border: 1px solid hsl(238, 40%, 52%);
+    opacity: 0.3;
+    border-width: 0 0 0 1px;
+    z-index: -1;
+}
+
 /*Main form styling*/
 
 .main-form , .reply-box{
