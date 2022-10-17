@@ -198,7 +198,9 @@ color: hsl(238, 40%, 52%);
     display: none;
 }
 
-
+.replies-container{
+    position: relative;
+}
 
 .replies-container>.comment-card {
     position: relative;
@@ -214,7 +216,7 @@ color: hsl(238, 40%, 52%);
     content: "";
     display: flex;
     position:absolute;
-    left:-3vw;
+    left:1vw;
     top: 0;
     bottom: 20px;
     border: 1px solid hsl(238, 40%, 52%);
@@ -350,7 +352,7 @@ svg:hover{
 } 
 
 .replies-container::before{
-    left: -0.8vw;
+    left: .3vw;
 }
 
 

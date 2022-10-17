@@ -44,7 +44,7 @@ function createComment(obj, parentId) {
 }
 
 
-function replyBtn(comntId, parentId) {
+function replyBtn() {
     return `
         <button class="btn reply-btn" onclick=" replyBtnClick(event)">
             <img src="images/icon-reply.svg" alt="">&nbsp; Reply
@@ -139,10 +139,7 @@ function replyObject(replyText, reUser, user) {
         id: genID(),
         content: replyText,
         createdAt:newDate(),
-        vote: {
-            score: 0,
-            detail: []
-        },
+        score:0,
         replyingTo: reUser,
         user: user
     }
