@@ -1,137 +1,157 @@
-let template=document.getElementById('container-template').content;
-let copyTemplate=document.importNode(template,true);
-let main= document.getElementById('comment-container')
-let mainContainer=document.querySelector('.container')
-let mainForm=document.querySelector('.main-form')
-let mainFormText=document.querySelector('.main-form-text-area')
+const url = "./data.json";
 
-let url='./data.json'
+let userImg= document.getElementById('form-img')
 
-
-function commentData(){
-    
-    fetch(url).then((res)=>res.json()).then((data)=>{
-        data.comments.map((data)=>{
-            let obj={
-                id:data.id,
-                name:data.user.username,
-                date:data.createdAt,
-                image:data.user.image.png,
-                content:data.content,
-                score:data.score,
-            }
-            
-
-            cloneCopy=copyTemplate.cloneNode(true)
-            let reply= cloneCopy.querySelector('.reply-card')
-            let card=cloneCopy.querySelector('.comment-card')
-            cloneCopy.querySelector('.username').textContent= `${obj.name}`
-            cloneCopy.querySelector('.comment-card').id= `${obj.id}`
-            cloneCopy.querySelector('.date').textContent= `${obj.date}`
-            cloneCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
-            cloneCopy.querySelector('.comment-card-content').textContent= `${obj.content}`
-          let newScore= cloneCopy.getElementById('score');
-          newScore.textContent= `${obj.score}`
-          
-            cloneCopy.querySelector(".plus").addEventListener('click',()=>{
-              newScore.innerHTML=`${obj.score+=1}`
-            })
-          
-            cloneCopy.querySelector(".minus").addEventListener('click',()=>{
-              newScore.innerHTML=`${obj.score--}`
-              if(obj.score<=0) obj.score = 0
-            })
-                
-            let btn=cloneCopy.querySelector('.reply')
-            card.insertAdjacentElement('afterend',replyCard(reply))
-        
-            let replyForm=cloneCopy.getElementById('comment-reply-card');
-            btn.addEventListener('click',(e)=>{
-            replyForm.classList.toggle('show')
-        }) 
-       
-        
-            data.replies.forEach((data)=>{
-                let obj={
-                    id:data.id,
-                    name:data.user.username,
-                    date:data.createdAt,
-                    image:data.user.image.png,
-                    content:data.content,
-                    score:data.score,
-                    replyTo:data.replyingTo
-                }
-                
-                let newReplyCopy=copyTemplate.cloneNode(true);
-                let replyReply=newReplyCopy.querySelector('.comment-card')
-                newReplyCopy.querySelector('.comment-card').id= `${obj.id}`
-              newReplyCopy.querySelector('.username').textContent= `${obj.name}`
-              newReplyCopy.querySelector('.date').textContent= `${obj.date}`
-              newReplyCopy.querySelector('.comment-img').innerHTML= ` <img src="${obj.image}" alt="">  `
-              newReplyCopy.querySelector('.comment-card-content').innerHTML= `<strong class='replyTo'>@${obj.replyTo}</strong>  ${obj.content}`
-              
-              let newScore=newReplyCopy.getElementById('score')
-              
-              
-              newScore.textContent= `${obj.score}`
-              newReplyCopy.querySelector(".plus").addEventListener('click',()=>{
-                newScore.innerHTML=`${obj.score+=1}`
-              })
-              
-              newReplyCopy.querySelector(".minus").addEventListener('click',()=>{
-                newScore.innerHTML=`${obj.score--}`
-                if(obj.score<=0) obj.score = 0
-              })
-              
-              
-              let replyReplyForm=newReplyCopy.getElementById('comment-reply-card');
-              let replybtn=newReplyCopy.querySelector('.reply')
-              
-              
-              let you= newReplyCopy.querySelector('.you')
-              let footerRelpy= newReplyCopy.querySelector('.reply')
-              if(obj.name=='juliusomo'){
-                you.classList.remove('remove')
-                footerRelpy.innerHTML=`  <div class="user-delete-edit-card"> 
-                  <div class="delete-edit-btn">
-                    <div class="delete-btn" >   
-                      <img class='btn-test' src="./images/icon-delete.svg" alt="">
-                      <span class='delete-btn-check' onclick='modalDelete(event);'>Delete</span>
-                    </div>
-                  </div>
-                  <div class="edit-btn">
-                    <img class='edit-test'  src="./images/icon-edit.svg" alt="">
-                      <span class='edit' onclick='edit(event)' >Edit</span>
-                  </div>
-              </div> 
-              
-              `
-              }
-              else{
-                replyReply.insertAdjacentElement('afterend',replyCard(reply))
-                replybtn.addEventListener('click',(e)=>{
-                    let target= e.target.parentElement.parentElement.parentElement.nextElementSibling
-                    target.classList.toggle('show')
-                   console.log(target)
-                }) 
-                
-
-              }    
-              
-              
-              return reply.append(newReplyCopy)
-              
-              }
-              
-              
-            )
-            return main.append(cloneCopy) 
-    })
-      
+ fetch(url)
+ .then((res)=>res.json())
+ .then((data)=>{
+    userImg.src=`${data.currentUser.image.webp }`
    
-    }
-)}
+})
 
 
-commentData()
+let currentUser = {};
+let comments = []
 
+function fetchComments() {
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        currentUser = data.currentUser;
+        comments = data.comments;
+        setComments(comments);
+        setCurrentUser(currentUser);
+        renderComments();
+       
+    })
+}
+
+
+function setCurrentUser(user) {
+    user = JSON.stringify(user);
+    window.localStorage.setItem('currentUser', user);
+}
+
+function getCurrentUser() {
+    let user  = window.localStorage.getItem('currentUser');
+    return JSON.parse(user);
+}
+
+function setComments(comments) {
+    comments = JSON.stringify(comments);
+    window.localStorage.setItem('comments', comments);
+}
+
+function getComments() {
+    let comments = window.localStorage.getItem('comments');
+    if (comments) return JSON.parse(comments);
+    
+}
+
+
+function hasLocalContent() {
+    return window.localStorage.getItem('comments') &&
+    window.localStorage.getItem('currentUser');
+}
+
+// for each individual comment from the comments array, call create comment filling it with it objects and picking the parent 
+// id from each object. comnt is the comment object
+
+function renderComments() {
+   
+    comments.map(comnt => {
+        let comment = createComment(comnt, comnt.id);
+        allComments .appendChild(comment);
+        let comntId=comnt.id
+        let parentId=comnt.id
+
+        replyingTo(comntId, parentId)
+        renderReplies(comnt);
+
+        comnt.replies.forEach((reply)=>{
+            console.log(reply.id)
+            let comntId=reply.id
+            replyingTo(comntId, parentId)
+           
+        })
+    })
+}
+
+// this create a div which takes an id as replies + parent ID with a class 
+// replies-container
+function createRepliesContainer(parentId) {
+    let container = document.createElement('div');
+    container.classList.add('replies-container');
+    container.id = "replies"+parentId;
+    return container;
+}
+
+
+function currentUserTag() {
+    return `
+        <span class="user-icon">you</span>
+    `
+}
+
+// this is called in the replyComntText so that the comment to be replied with it user is tracked
+function comntTextNode(content,replyUser) {
+    let contentText = '';
+    if (replyUser)
+        contentText = `<span class="reply-user">@${replyUser}</span>&nbsp;`
+    contentText += content;
+    return contentText;
+}
+
+
+function replyComntText(comnt) {
+    return comntTextNode(comnt.content, comnt.replyingTo);
+}
+
+//this function is called in the renderCommments. A new container is created which takes the createRepliesContainer
+//which accepts a parent Id. The parentComnt here is the comnt in the renderComments forEach. The replies array is accessed
+// from the main comment. A new comment is created from the create Comment
+function renderReplies(parentComnt) {
+    let container = createRepliesContainer(parentComnt.id);
+    parentComnt.replies.forEach(reply => {
+        let comment = createComment(reply, parentComnt.id);
+        comment.querySelector(".comment-card-content").innerHTML = replyComntText(reply);
+        container.appendChild(comment);
+    })
+    allComments.appendChild(container);
+}
+
+
+if (hasLocalContent()) {
+    comments = getComments();
+    currentUser = getCurrentUser();
+    renderComments();
+} else {
+    fetchComments();
+}
+
+
+function addLocalComnt(comnt) {
+    let comments = getComments();
+    comments.push(comnt);
+    setComments(comments);
+}
+
+function addLocalReply(comntId, reply) {
+    let comments = getComments();
+    let cmntIndex = comments.findIndex(cmnt => cmnt.id === comntId);
+    comments[cmntIndex].replies.push(reply);
+    setComments(comments);
+}
+
+
+function replyComntText(comnt) {
+    return comntTextNode(comnt.content, comnt.replyingTo);
+}
+
+
+function renderReplyComnt(replyObj, parentId) {
+    const container = document.getElementById("replies" + parentId);
+    let comnt = createComment(replyObj, parentId);
+    comnt.querySelector(".card-content").innerHTML = replyComntText(replyObj);
+    container.appendChild(comnt);
+}
