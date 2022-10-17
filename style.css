@@ -311,6 +311,11 @@ color: hsl(238, 40%, 52%);
     
 }
 
+    
+.replies-container::before{
+    left: -0.8vw;
+}
+
 .form-img{
     width: 3vw;
     height: fit-content;
