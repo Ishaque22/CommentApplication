@@ -64,7 +64,7 @@ main{
 
 
 .comment-card-vote {
-    d  display: flex;
+    display: flex;
     flex-direction: row;
     width: fit-content;
     height: fit-content;
@@ -116,6 +116,8 @@ color: hsl(238, 40%, 52%);
 .reply-btn{
     cursor: pointer;
 }
+
+
 
 /* modal styling*/
 
