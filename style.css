@@ -347,7 +347,7 @@ color: hsl(238, 40%, 52%);
 
 .form-area{
     width: 75%;
-    margin-left: 4vw;
+    margin-left: 4rem;
 }
 
 .comment-card-vote {
@@ -389,4 +389,9 @@ color: hsl(238, 40%, 52%);
     cursor: pointer;
     font-size: 0.9rem;
 } 
+
+.form-btn{
+    width: fit-content;
+    padding: 1em 2em;
+}
 }
