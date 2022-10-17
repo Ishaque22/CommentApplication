@@ -1,4 +1,4 @@
-   // modal
+ /*   // modal
 const showModal=(comntId, parentId)=>{
    
     let modalContainer=document.getElementById('modal-container')
@@ -44,7 +44,7 @@ const showModal=(comntId, parentId)=>{
   function deleteUserComnt(comntId, parentId) {
     document.getElementById('comnt' + comntId).remove();
     deleteLocalComnt(comntId, parentId);
-} 
+} */
 
   //edit and update
 

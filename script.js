@@ -1,33 +1,158 @@
+const allComments = document.getElementById("comments");
+const mainFormSubmit = document.querySelector('.main-form')
+const main = document.querySelector('main')
+const commentTemplate = document.getElementById("comment-template");
 
-function edit(e){
-    e.preventDefault()
-    let target=e.target
-    let formEdit =e.target.parentElement.parentElement.parentElement.parentElement.parentElement
-    let btnUpdateShow=formEdit.querySelector('.update-btn')
-    btnUpdateShow.classList.remove('remove')
-  
-    console.log(target)
-    console.log('i am edit btn')
-    if(target.classList.contains('edit')){
-        console.log('hi')
-        console.log(formEdit.children[1].textContent)
-       formEdit.querySelector('.comment').innerHTML=`<textarea class='edit-text-area' name="" id="" cols="15" rows="4">${formEdit.children[1].textContent}</textarea>`
+
+
+function newDate(){
+    let date =new Date().toLocaleDateString()
+    return date
+}
+
+function createComment(obj, parentId) {
+    let clone = commentTemplate.content.cloneNode(true);
+    clone.querySelector("img").src = obj.user.image.png;
+    clone.querySelector("img").alt = obj.user.username;
+    clone.querySelector(".comment-card").id = 'comnt' + obj.id;
+    clone.querySelector(".comment-username").innerText = obj.user.username;
+    clone.querySelector(".card-content").innerText = obj.content;
+   
+    clone.querySelector(".comment-card-date").innerText = obj.createdAt;
+    let actionBtns = clone.querySelector(".comment-action");
+
+    let score=clone.getElementById("score").innerText=obj.score || 0;
+    let newScore=clone.getElementById("score")
+    if (obj.user.username === currentUser.username) {
+        clone.querySelector(".comment-username").innerHTML += currentUserTag();
+        actionBtns.innerHTML = userBtns(obj.id, parentId);
+    } else {
+        actionBtns.innerHTML = replyBtn(obj.id, parentId);
     }
-    
-  }
-  
-  
-  function update(e){
+
+    console.log(parentId)
+    clone.querySelector('.plus-icon').addEventListener('click',()=>{
+      newScore.innerText=score+=1
+    })
+
+    clone.querySelector('.minus-icon').addEventListener('click',()=>{
+        newScore.innerText=score--
+        if(score<=0) score = 0
+      })
+      clone.append(replyBox(obj.id, parentId, obj.replyingTo))
+      
+    return clone;
+}
+
+
+function replyBtn(comntId, parentId) {
+    return `
+        <button class="btn reply-btn" onclick=" replyBtnClick(event,${comntId}, ${parentId})">
+            <img src="images/icon-reply.svg" alt="">&nbsp; Reply
+        </button>
+        
+    `
+}
+
+function replyBtnClick(e,comntId,parentId){
     e.preventDefault()
-    let target=e.target.parentElement.parentElement.previousElementSibling
-    target.querySelector('.comment')
-    console.log(target.querySelector('.edit-text-area').value)
-    let content=target.querySelector('.edit-text-area').value
-    target.textContent=content
+    let target= e.target
+    console.log(target.parentNode.parentNode.nextElementSibling)
+   
+   
+   
     
+}
+
+function userBtns(comntId, parentId) {
+    return `
+        <button class="delete-btn" 
+            onclick="showModal(${comntId}, ${parentId})">
+            <img src="images/icon-delete.svg" alt="">&nbsp; Delete
+        </button>
+        <button class="edit-btn"
+            onclick="editUserComnt(this, ${comntId}, ${parentId})">
+            <img src="images/icon-edit.svg" alt="">&nbsp; Edit
+        </button>
+    `
+}
+
+function replyBox(comntId, parentId, reUser) {
+    let replyBox=document.createElement('div')
+    replyBox.classList.add('reply','show')
+    replyBox.id=`box${comntId}`
+   replyBox.innerHTML=`
+            <div class='reply-box'>
+            <textarea class='main-form-text-area' placeholder="Add a comment..." rows="3"></textarea>
+            <div class="reply-box-footer">
+                <img src="${currentUser.image.png}" 
+                    width="34" height="34" class="mobile-only">
+                <button class="reply-box-footer-btn" data-reuser="${reUser}"
+                    onclick="sendReply(this, ${comntId}, ${parentId})" >
+                    REPLY</button>
+            </div>
+            </div>
+        
+    `
+    return replyBox
+}
+
+function replyingTo(comntId, parentId) {
+    let comnt = getCommt(comntId, parentId);
+    const comntElem = document.getElementById('comnt' + comntId);
+    let boxElem = replyBox(comntId, parentId, comnt.user.username);
+    comntElem.insertAdjacentHTML("afterend", boxElem);
+    document.querySelector('#box'+comntId).
+        querySelector('textarea').focus();
+        document.querySelector('#box'+comntId)
+       
+
+        
+        
+}
+
+
+function getCommt(id, parentId) {
+    let comments = getComments();
+    let comnt = comments.find(cmnt => cmnt.id === parentId);
+    if (id === parentId)
+        return comnt;
+    let replies = comnt.replies;
+    return replies.find(reply => reply.id === id);
+}
+
+
+function genID() {
+    let lastId = window.localStorage.getItem('last-id');
+    if (!lastId) lastId = 13;
+    window.localStorage.setItem('last-id', ++lastId);
+    return lastId;
+}
 
 
 
-    let targetParent=e.target.parentElement
-   targetParent.classList.toggle('remove')
-  }
+function replyObject(replyText, reUser, user) {
+    return {
+        id: genID(),
+        content: replyText,
+        createdAt:newDate(),
+        vote: {
+            score: 0,
+            detail: []
+        },
+        replyingTo: reUser,
+        user: user
+    }
+}
+
+
+function sendReply(btnElem, id, parentId) {
+    const boxElem = document.getElementById('box' + id);
+    let replyText = boxElem.querySelector('textarea').value;
+    let reUser = btnElem.dataset.reuser;
+    let replyObj = replyObject(replyText, reUser, currentUser);
+    addLocalReply(parentId, replyObj);
+    renderReplyComnt(replyObj, parentId);
+    boxElem.remove();
+}
+
