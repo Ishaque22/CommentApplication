@@ -202,7 +202,7 @@ color: hsl(238, 40%, 52%);
     position: relative;
 }
 
-.replies-container>.comment-card {
+.replies-container{
     position: relative;
     margin-left: 1.2em;
 }
@@ -216,7 +216,7 @@ color: hsl(238, 40%, 52%);
     content: "";
     display: flex;
     position:absolute;
-    left:1vw;
+    left:-3vw;
     top: 0;
     bottom: 20px;
     border: 1px solid hsl(238, 40%, 52%);
@@ -352,7 +352,9 @@ svg:hover{
 } 
 
 .replies-container::before{
-    left: .3vw;
+    left: -3vw;
+    border-width: 0 0 0 2px;
+    opacity: .1;
 }
 
 
@@ -424,4 +426,8 @@ svg:hover{
     font-weight: 200;
 }
 
+
+.replies-container {
+    margin-left: 5em;
+}
 }
