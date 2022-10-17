@@ -38,6 +38,7 @@ main{
     flex-direction: column;
     padding: 1em;
     margin-bottom: 1em;
+    line-height: 1.5em;
 }
 .comment-card-header{
     display: flex;
@@ -69,13 +70,13 @@ main{
     width: fit-content;
     height: fit-content;
     align-items: center;
-    gap: 0.4em;
-    padding: 0.4em 0.8em;
+    gap: 0.8em;
+    padding: 0.4em 0.6em;
     border-radius: 8px;
     background-color:  hsl(228, 33%, 97%);
     color: hsl(238, 40%, 52%);
     font-weight: 500;
-    cursor: default;
+    cursor:pointer;
 }
 
 
@@ -96,7 +97,9 @@ main{
     background-color:hsl(238, 40%, 52%);
     color: #fff;
     text-align: center;
-    padding: .1em .4em .2em;
+    padding: .1em .6em .2em .5em;
+    font-size: small;
+    border-radius: 2px;
 }
 
 .delete-btn, .edit-btn{
@@ -107,6 +110,7 @@ main{
     background-color: transparent;
     color: hsl(358, 79%, 66%);
     cursor: pointer;
+    font-weight: 500;
 }
 
 .edit-btn{
@@ -120,6 +124,7 @@ color: hsl(238, 40%, 52%);
 
 .reply-btn{
     cursor: pointer;
+    font-weight: 500;
 }
 
 
@@ -243,6 +248,11 @@ color: hsl(238, 40%, 52%);
     padding: .2em 1.2em;
     border-radius: 7px;
     border: 1px solid hsl(223, 19%, 93%);
+    cursor: pointer;
+}
+
+.main-form-text-area:hover{
+    border: solid 1px hsl(238, 40%, 52%);
 }
 
 .reply-box-footer{
@@ -307,6 +317,16 @@ color: hsl(238, 40%, 52%);
 
 .reply-user{
     color: hsl(238, 40%, 52%);
+    
+    
+}
+svg{
+    fill:#C5C6EF;
+   margin-left: 0.2em;
+}
+
+svg:hover{
+    fill: hsl(238, 40%, 52%);
 }
 @media (min-width: 640px) {
     .main-form{
@@ -357,12 +377,13 @@ color: hsl(238, 40%, 52%);
     justify-content: center;
     align-content:center ;
     gap: 6.5%;
-    width:2.5rem;
-    max-height: 5rem;
+    width:2.2rem;
+    max-height: 5.1rem;
     left: 2%;
     padding: 1em;
-    top: 0.3vw;
+    top: 0.1vw;
     border-radius: 8px;  
+    text-align: center;
 }
 
 .comment-card-content{
@@ -394,4 +415,11 @@ color: hsl(238, 40%, 52%);
     width: fit-content;
     padding: 1em 2em;
 }
+
+.user-icon{
+    margin-left: 1em;
+    border-radius: 2px;
+    font-weight: 200;
+}
+
 }
