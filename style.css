@@ -1,116 +1,126 @@
-
-.attribution { font-size: 11px; text-align: center; }
-.attribution a { color: hsl(228, 45%, 44%); }
-
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-body{
-    background-color:  hsl(223, 19%, 93%);
+    font-size: 16px;
     font-family: 'Rubik', sans-serif;
-}
-p{
-    font-family: 'Rubik', sans-serif;
-    font-size: 0.9rem;
-}
-.edit-text-area{
-    font-size: 0.9rem;
-    color:hsl(211, 10%, 45%);
-}
-.addCommentForm{
-    display: flex;
-    position: relative;
-    background-color: #fff;
-    border-radius: 10px;
-    margin-bottom: 0.4rem;
-    margin-left: 1%;
-    margin-right: 0%;
-    margin-top: 0%;
-  }
-.comment-img >img{
-    width: 2rem;
-}
-.user-delete-edit-card{
-    display: flex;
-    width: 8rem;
-    justify-content: space-between;
-}
-.swidth{
-    width: 50vw;
-   display: flex;
-   justify-content: flex-end;
-   gap: 1rem;
-}
-.update{
-    display: flex;
-    background-color: hsl(238, 40%, 52%);
-    color: #fff;
-    width: 15vw;
-    border-radius: 4px;
-    font-size: 3vw;
-    border-style: none;
-    text-align: center;
-    padding: 1vw;
-    justify-content: center;
 }
 
-.btn-test, .edit-test{
-    pointer-events: none;
+
+
+.attribution { font-size: 11px; text-align: center; 
+    font-size: 0.1rem;    
+    margin-top: 3rem;
 }
-.edit-text-area{
-    width: 16rem;
+.attribution a { color: hsl(228, 45%, 44%); }
+  
+body{
+    background-color: hsl(228, 33%, 97%);
+    color:hsl(211, 10%, 45%);
+    padding: 3em 0 0 0;
+}
+
+main{
+    padding: 0 1em; 
+}
+.comments{
+    width: 100%;
+    max-width: 750px;
+    margin: auto;
     
 }
-/* Reply styling*/
-#reply{
-    color: hsl(238, 40%, 52%)
-}
-.edit-btn{
-    color:hsl(238, 40%, 52%) ;
-}
-.reply-card{
+.comment-card{
+    background-color: #fff;
+    border-radius: 10px;
     position: relative;
-}
-.username{
-    font-weight: 600;
-}
-.date, .comment-card-content{
-    color:hsl(211, 10%, 45%);
-}
-.reply-card > .comment-card{
-    width: 79vw;
-    margin-left: 6.5vw;
-    margin-right: 1vw;
-}
-.reply-card::before{
-    content: "";
     display: flex;
-    position:absolute;
-    left:3vw;
-    top: 0;
-    bottom: 20px;
-    border: 1px solid hsl(238, 40%, 52%);
-    opacity: 0.4;
-    border-width: 0 0 0 1px;
-    z-index: -1;
+    flex-direction: column;
+    padding: 1em;
+    margin-bottom: 1em;
 }
-.you{
+.comment-card-header{
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+    margin-bottom: .4em;
+}
+
+
+.comment-card-header img,
+.comment-username {
+    margin-right: 1em;
+}
+
+
+.comment-card-header img {
+    height: 85%;
+}
+
+.comment-username {
+    font-weight: 700;
+    color:  black
+}
+
+
+.comment-card-vote {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0 .4em;
+    border-radius: 5px;
+    background-color:  hsl(228, 33%, 97%);
+    color: hsl(238, 40%, 52%);
+    font-weight: 500;
+    cursor: default;
+}
+
+
+.comment-action {
+    position: absolute;
+    bottom: 1.1em;
+    right: 1em;
+}
+.footer{
+    margin-top: 1rem;
+}
+
+.plus-icon, .minus-icon{
+    cursor: pointer;
+}
+
+.user-icon{
     background-color:hsl(238, 40%, 52%);
     color: #fff;
     text-align: center;
-    padding-left: 0.2rem;
-    padding-right: 0.25rem;
-    padding-bottom: 0.1rem;
+    padding: .1em .4em .2em;
 }
-.replyTo{
-    color:hsl(238, 40%, 52%); ;
-}
-/* background delete modal styling*/
 
-.background-modal{
+.delete-btn, .edit-btn{
+    display: inline;
+    width: fit-content;
+    border-style: none;
+    margin-left: 1em;
+    background-color: transparent;
+    color: hsl(358, 79%, 66%);
+    cursor: pointer;
+}
+
+.edit-btn{
+color: hsl(238, 40%, 52%);
+}
+
+.reply-btn{
+    cursor: pointer;
+}
+
+/* modal styling*/
+
+
+.background-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -125,377 +135,208 @@ p{
     
 }
 
-.modal-content{
-    width: 17rem;
-    background-color: white;
-    border-radius: 5px;
-    padding: 1rem;
-    
-}
-
-.modal-content ,p{
-    margin-top: 3vw;
-    margin-bottom: 3vw;
-}
-
-.modal-content > p{
-    color:hsl(211, 10%, 45%);
-}
-.modalBtn{
-    width: 9rem;
-    font-size: 0.7rem;
-    color: #fff;
-    text-align: center;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border-style: none;
-    border-radius: 5px;
-    
-}
-.modal-button{
-    display: flex;
-    gap: 1rem;
-
-   
-}
-.remove{
-    display: none;
-}
-.delete{
-    background-color: hsl(358, 79%, 66%);
-   
-}
-.cancel{
-    background-color:  hsl(211, 10%, 45%);
-    
-}
-  .show{
-    display: none;
-}
-.text-area{
-    padding:1%;
-   border-radius: 5px;
-   }
-  
-
-/* mobile first technique styling*/
-.container{
-    margin:7vw;
-}
-.comment-card{
-    background-color: white;
-    border-radius: 5px;
-    margin-bottom: 3%;
-    padding-left: 5%;
-    padding-top: 5%;
-    padding-right: 5%;
-    
-}
-.comment-header{
-    display: flex;
-    gap: 3vw;
-    align-items: center;
-    font-size: 0.9rem;
-}
-.comment-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2vw;
-    width: 5rem;
-    height: 2rem;
-    background-color: hsl(228, 33%, 97%);
-    border-radius: 2vw;
-    margin-bottom: 2%;
-
-}
-.comment-footer{
-    margin-top: 2vw;
-}
-#reply{
- padding-left: 0.5rem;   
-}
 
 
-.form-footer>img{
-    width: 8vw;
-    height: 5%;
-}
-.comment{
+
+.modal-content {
     width: 95%;
-    margin-left: 1%;
-}
-/*form-styling*/
-.form{
-    display: block;
-        width: 90%;
-        margin: 2% 4% 0% 5%;
-       
-}
-.text-area{
-    width: 100%;
-}
-.form-btn{
-    width: 5rem;
-    background-color: hsl(238, 40%, 52%);
-    font-size: 0.8rem;
+    max-width: 400px;
+    margin: auto;
+    padding: 1.5em;
+    border-radius: .7em;
+    background-color: #fff;
+    
 }
 
-.addCommentForm{
-    display: grid;
+.modal-content h2 {
+    font-size: 1.22em;
+    margin-bottom: .65em;
+    font-weight: 600;
+    
 }
-.addReplyForm{
-    display: grid;
+
+.modal-content p {
+    line-height: 1.4em;
 }
+
+
+.modal-button {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 1em;
+    margin-top: 1em;
+}
+
+.delete, .cancel{
+    padding: .90em 0;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 7px;
+    width: 100%;
+    border-style: none;
+}
+
+.delete { background-color: hsl(358, 79%, 66%); 
+}
+.cancel  { background-color:  hsl(211, 10%, 45%); 
+}
+
+.remove, .show{
+    display: none;
+}
+
+
+
+.replies-container {
+    position: relative;
+    margin-left: 1.2em;
+}
+
+
+
+.reply-user {
+    color: var(--moderate-blue);
+    font-weight: 700;
+}
+
+/*Main form styling*/
+
+.main-form , .reply-box{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 1em;
+    color: var(--grayish-blue);
+    margin: auto;
+    
+   
+}
+
+.main-form-text-area{
+    width: 100%;
+    resize: none;
+    overflow: auto;
+    min-height: fit-content;
+    color: hsl(211, 10%, 45%);
+    outline: none;
+    line-height: 1.5em;
+    padding: .2em 1.2em;
+    border-radius: 7px;
+    border: 1px solid hsl(223, 19%, 93%);
+}
+
+.reply-box-footer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
 .form-footer{
     display: flex;
-    flex-direction: row-reverse;
     justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.reply-box{
+    margin-bottom: 0.4rem;
+}
+
+.reply-btn{
+    border-style: none;
+    background-color: transparent;
+    color: hsl(238, 40%, 52%);
 }
 .form-img{
-    width: 15%;
-    height: auto;
-    margin-top: 2%;
+    width: 10vw;
+    height: fit-content;
 }
+
 .form-btn{
+    width: fit-content;
+    padding: 0.85em 2.1rem;
+    border-style: none;
+    border-radius: 7px;
     background-color: hsl(238, 40%, 52%);
     color: #fff;
-    width: 5.5rem;
-    height: 2.3rem;
-    border-radius: 8px;  
-    border-style: none; 
+    font-size: 1rem;
 }
-.reply-card1{
-    margin-bottom: 20%;
-}
-/* Desktop design*/
-@media only screen and (min-width: 700px){
-
-    /*Modal content desktop styling*/
-     /* modal desktop*/
-     .modal-content{
-        width: 26vw;
-        border-radius: 0.4rem;
-        padding: 2vw;
-    }
-    .modalBtn{
-        width: 11.5vw;
-        font-size: 1vw;
-        color: #fff;
-        text-align: center;
-       padding: 1vw;
-        border-style: none;
-        
-    }
-    .modal-content ,p{
-        margin-top: 1vw;
-        margin-bottom: 1vw;
-    }
-    .modal-content >p{
-        line-height: 1.3rem;
-    }
-    .main-container > .comment-card{
-       width: 45.4vw;
-      margin-left: 14.7vw;
-       
-    }
-    .reply-append > .comment-reply-card{
-        width: 45.5vw;
-        margin-left: 9.5vw;
-    }
-
-
-
-
-    /* comment card desktop styling*/
-
-    .comment-card{
-        width: 60vw;
-       display: inline-block;
-        position: relative;
-        background-color: white;
-        border-radius: 5px;
-        margin: 0.5% 17%;
-        padding-top: 0%;
-        padding-bottom:0% ;
-       
-    }
-    .button{
-        display: grid;
-        position: absolute;
-        justify-content: center;
-        align-content:center ;
-        gap: 6.5%;
-      width:2.5rem;
-      height: 70%;
-      max-height: 5rem;
-      left: 2%;
-     padding: 1em;
-      top: 1rem;
-      border-radius: 8px;  
-    }
-    .plus,.minus{
-        cursor: pointer;
-       
-    }
-    .size{
-        width: 10%;
-    }
-    
-    .comment-header{
-        margin-top: 1rem;
-        display: flex;
-        gap: 0.8em;
-    }
-
-     .reply{
-        position: absolute;
-        top: 1.58rem;
-        right: 7%;
-        cursor: pointer;
-        font-size: 0.9rem;
-    } */
-
-    .line{
-        display: flex;
-        position: relative; 
-        justify-content: center;
-        align-items: center;
-    }
-    .comment-p{
-        position: relative;
-        left: 5%;
-        width:fit-content;
-    }
-    .comment{
-        display: block;
-        width:fit-content;
-        margin-left: 1%;
-        
-    }
-   
-    
-   .addCommentForm{
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 60vw;
-    margin: 0.5% 17%;
-    background-color: #fff;
-    border-radius: 5px;
-   
-  }
-
-
-   .form-btn{
-    position: absolute;
-    right: 5%;
-    width: 5.7vw;
-    top: 15%;
-   
-   }
-   .form{
-    width: 70%;
-    margin: 2% 10% 2% 0%;
-    
-  
-   }
-   .form-img{
-    position: absolute;
-    left: 3%;
-    width: 6%;
-    top: 10%;
-   }
-   .text-area{
-    border-radius: 5px;
-    border: 0.2px solid hsl(238, 40%, 52%);
-    
-   }
-
-   .comment-img >img{
-    width: 3rem;
+.reply-box-footer-btn, .update-btn{
+    width: fit-content;
+    padding: 0.9em 1.4rem;
+    border-style: none;
+    border-radius: 7px;
+    background-color: hsl(238, 40%, 52%);
+    color: #fff;
+    font-size: 0.9rem;
 }
 
 
-.form-footer>img{
+.update-btn {
+    float: right;
+    margin-top: .75em;
+}
+
+.reply-user{
+    color: hsl(238, 40%, 52%);
+}
+@media (min-width: 640px) {
+    .main-form{
+        max-width: 750px;
+    }
+
+    
+.reply-box {
+   margin-bottom: 0.5rem;
+    
+}
+
+.form-img{
     width: 3vw;
-    height: auto;
-
+    height: fit-content;
 }
-.reply-card > .comment-card{
-    width: 56vw;
-    margin-left: 19.2vw;
-    margin-right: 10vw;
+
+.comment-card-vote {
+    height: fit-content;
+    display: grid;
+    position: absolute;
+    justify-content: center;
+    align-content:center ;
+    gap: 6.5%;
+    width:2.5rem;
+    max-height: 5rem;
+    left: 2%;
+    padding: 1em;
+    top: 0.3vw;
+    border-radius: 8px;  
+}
+
+.comment-card-content{
+    position: relative;
+    left: 8%;
+    width:90%;
+}
+
+.comment-card-header{
+    position: relative;
+    left: 8%;
+}
+.comment{
+    display: block;
+    width:fit-content;
+    margin-left: 1%;
     
 }
-.reply-card::before{
-    content: "";
-    display: flex;
-    position:absolute;
-    left: 18vw;
-    top: 0;
-    bottom: 20px;
-    border: 1px solid hsl(238, 40%, 52%);
-    opacity: 0.4;
-    border-width: 0 0 0 1px;
-   z-index: -1;
-}
-.container{
-    margin-left:3vw;
-}
-.comment-img>img{
-    width: 2rem;
-}
-.user-delete-edit-card{
-    display: flex;
-    width: 7rem;
-    justify-content: space-between;
-}
-.swidth{
-    width: 70vw;
-   display: flex;
-   justify-content: flex-end;
-   gap: 1rem;
-}
-.edit-text-area{
-    padding: 1%;
-    width: 40vw;
-    margin-top: 0;
-    margin-bottom: 0;
-    
-}
-.comment-footer{
-    display: flex;
-    justify-content: right;
-}
-.update{
-    width: 5.5vw;
-  font-size: 0.9vw;
-  margin-bottom: 1.5vw;
-  color: #fff;
- padding: 0.7vw;
- border-radius: 5px;
-}
 
+.comment-action{
+    position: absolute;
+    top: 1.58rem;
+    right: 7%;
+    cursor: pointer;
+    font-size: 0.9rem;
+} 
 }
-.main-form{
-    width: 100%;
-  
-}
-.form-footer{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-}
-
-.show{
-    display: none;
-}
-
-
