@@ -195,7 +195,7 @@ color: hsl(238, 40%, 52%);
 
 
 
-.replies-container {
+.replies-container>.comment-card {
     position: relative;
     margin-left: 1.2em;
 }
