@@ -65,7 +65,7 @@ function editBox(comnt, parentId) {
     return `
         <textarea class='main-form-text-area' placeholder="Add a comment..." rows="4"
             >${comnt.content}</textarea>
-        <button class="btn  " ${inReply}
+        <button class="btn update-btn" ${inReply}
             onclick="updateUserComnt(this, ${comnt.id}, ${parentId})">
         UPDATE</button>
     `
