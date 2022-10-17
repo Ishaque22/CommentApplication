@@ -58,10 +58,22 @@ function hasLocalContent() {
 // id from each object. comnt is the comment object
 
 function renderComments() {
-    comments.forEach(comnt => {
+   
+    comments.map(comnt => {
         let comment = createComment(comnt, comnt.id);
-        allComments.appendChild(comment);
+        allComments .appendChild(comment);
+        let comntId=comnt.id
+        let parentId=comnt.id
+
+        replyingTo(comntId, parentId)
         renderReplies(comnt);
+
+        comnt.replies.forEach((reply)=>{
+            console.log(reply.id)
+            let comntId=reply.id
+            replyingTo(comntId, parentId)
+           
+        })
     })
 }
 
@@ -70,7 +82,7 @@ function renderComments() {
 function createRepliesContainer(parentId) {
     let container = document.createElement('div');
     container.classList.add('replies-container');
-    container.id = "replies"+parentId; 
+    container.id = "replies"+parentId;
     return container;
 }
 

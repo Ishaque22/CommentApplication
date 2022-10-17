@@ -113,6 +113,10 @@ main{
 color: hsl(238, 40%, 52%);
 }
 
+.reply-btn{
+    cursor: pointer;
+}
+
 /* modal styling*/
 
 
@@ -178,26 +182,18 @@ color: hsl(238, 40%, 52%);
 .cancel  { background-color:  hsl(211, 10%, 45%); 
 }
 
-.remove{
+.remove, .show{
     display: none;
 }
 
-.show{
-    display: none;
-}
+
+
 .replies-container {
     position: relative;
     margin-left: 1.2em;
 }
 
-.replies-container::before {
-    content: "";
-    position: absolute;
-    left: -1em;
-    height: calc(100% - 1rem);
-    border-left: 2px solid var(--light-gray);
-    z-index: -1;
-}
+
 
 .reply-user {
     color: var(--moderate-blue);
@@ -286,7 +282,7 @@ color: hsl(238, 40%, 52%);
 }
 
 .reply-user{
-    color: blue;
+    color: hsl(238, 40%, 52%);
 }
 @media (min-width: 640px) {
     .main-form{
@@ -299,10 +295,48 @@ color: hsl(238, 40%, 52%);
     
 }
 
-
 .form-img{
     width: 3vw;
     height: fit-content;
 }
 
+.comment-card-vote {
+    height: fit-content;
+    display: grid;
+    position: absolute;
+    justify-content: center;
+    align-content:center ;
+    gap: 6.5%;
+    width:2.5rem;
+    max-height: 5rem;
+    left: 2%;
+    padding: 1em;
+    top: 0.3vw;
+    border-radius: 8px;  
+}
+
+.comment-card-content{
+    position: relative;
+    left: 8%;
+    width:90%;
+}
+
+.comment-card-header{
+    position: relative;
+    left: 8%;
+}
+.comment{
+    display: block;
+    width:fit-content;
+    margin-left: 1%;
+    
+}
+
+.comment-action{
+    position: absolute;
+    top: 1.58rem;
+    right: 7%;
+    cursor: pointer;
+    font-size: 0.9rem;
+} 
 }

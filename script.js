@@ -39,28 +39,30 @@ function createComment(obj, parentId) {
         newScore.innerText=score--
         if(score<=0) score = 0
       })
-      clone.append(replyBox(obj.id, parentId, obj.replyingTo))
-      
+  
     return clone;
 }
 
 
 function replyBtn(comntId, parentId) {
     return `
-        <button class="btn reply-btn" onclick=" replyBtnClick(event,${comntId}, ${parentId})">
+        <button class="btn reply-btn" onclick=" replyBtnClick(event)">
             <img src="images/icon-reply.svg" alt="">&nbsp; Reply
         </button>
         
     `
 }
 
-function replyBtnClick(e,comntId,parentId){
+function replyBtnClick(e){
     e.preventDefault()
     let target= e.target
-    console.log(target.parentNode.parentNode.nextElementSibling)
-   
-   
-   
+    console.log(target)
+    console.log(target.parentElement.parentElement.nextElementSibling)
+    let toBeToggled=target.parentElement.parentElement.nextElementSibling
+    if(toBeToggled){
+      toBeToggled.classList.toggle('show')
+    }
+    
     
 }
 
@@ -78,11 +80,8 @@ function userBtns(comntId, parentId) {
 }
 
 function replyBox(comntId, parentId, reUser) {
-    let replyBox=document.createElement('div')
-    replyBox.classList.add('reply','show')
-    replyBox.id=`box${comntId}`
-   replyBox.innerHTML=`
-            <div class='reply-box'>
+    return `
+        <div class="reply-box show" id="box${comntId}" >
             <textarea class='main-form-text-area' placeholder="Add a comment..." rows="3"></textarea>
             <div class="reply-box-footer">
                 <img src="${currentUser.image.png}" 
@@ -91,10 +90,14 @@ function replyBox(comntId, parentId, reUser) {
                     onclick="sendReply(this, ${comntId}, ${parentId})" >
                     REPLY</button>
             </div>
-            </div>
-        
+        </div>
+
+        <style>
+        .show{
+            display:none
+        }
+        </style>
     `
-    return replyBox
 }
 
 function replyingTo(comntId, parentId) {
@@ -153,6 +156,6 @@ function sendReply(btnElem, id, parentId) {
     let replyObj = replyObject(replyText, reUser, currentUser);
     addLocalReply(parentId, replyObj);
     renderReplyComnt(replyObj, parentId);
-    boxElem.remove();
+    boxElem.classList.add('show')
 }
 
