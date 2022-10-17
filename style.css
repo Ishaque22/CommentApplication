@@ -64,14 +64,14 @@ main{
 
 
 .comment-card-vote {
-    display: flex;
+    d  display: flex;
     flex-direction: row;
     width: fit-content;
     height: fit-content;
     align-items: center;
     gap: 0.4em;
-    padding: 0 .4em;
-    border-radius: 5px;
+    padding: 0.4em 0.8em;
+    border-radius: 8px;
     background-color:  hsl(228, 33%, 97%);
     color: hsl(238, 40%, 52%);
     font-weight: 500;
