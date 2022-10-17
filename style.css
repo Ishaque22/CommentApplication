@@ -113,6 +113,11 @@ main{
 color: hsl(238, 40%, 52%);
 }
 
+
+.delete-btn:hover, .edit-btn:hover,.reply-btn:hover{
+    opacity: 0.5;
+}
+
 .reply-btn{
     cursor: pointer;
 }
@@ -195,13 +200,10 @@ color: hsl(238, 40%, 52%);
     margin-left: 1.2em;
 }
 
-
-
 .reply-user {
     color: var(--moderate-blue);
     font-weight: 700;
 }
-
 
 .replies-container::before{
     content: "";
@@ -215,7 +217,6 @@ color: hsl(238, 40%, 52%);
     border-width: 0 0 0 1px;
     z-index: -1;
 }
-
 /*Main form styling*/
 
 .main-form , .reply-box{
@@ -267,6 +268,7 @@ color: hsl(238, 40%, 52%);
     background-color: transparent;
     color: hsl(238, 40%, 52%);
 }
+
 .form-img{
     width: 10vw;
     height: fit-content;
@@ -281,7 +283,10 @@ color: hsl(238, 40%, 52%);
     color: #fff;
     font-size: 1rem;
 }
+
+
 .reply-box-footer-btn, .update-btn{
+    cursor:pointer ;
     width: fit-content;
     padding: 0.9em 1.4rem;
     border-style: none;
@@ -291,6 +296,9 @@ color: hsl(238, 40%, 52%);
     font-size: 0.9rem;
 }
 
+.reply-box-footer-btn:hover, .form-btn:hover{
+    background-color: hsl(239, 57%, 85%)
+}
 
 .update-btn {
     float: right;
@@ -305,20 +313,41 @@ color: hsl(238, 40%, 52%);
         max-width: 750px;
     }
 
-    
+    .main-form-text-area{
+        width: 80%;
+    }
 .reply-box {
    margin-bottom: 0.5rem;
     
 }
 
-    
+.reply-box-footer-btn, .form-btn{
+    position: absolute;
+    top: 1.58rem;
+    right: 3%;
+    cursor: pointer;
+    font-size: 0.9rem;
+} 
+
 .replies-container::before{
     left: -0.8vw;
 }
 
+
+.form-img, .reply-box-footer>img{
+    position: absolute;
+    left: 3%;
+    top: 15%;
+   }
+
 .form-img{
     width: 3vw;
     height: fit-content;
+}
+
+.form-area{
+    width: 75%;
+    margin-left: 4vw;
 }
 
 .comment-card-vote {

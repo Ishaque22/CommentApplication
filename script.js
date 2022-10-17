@@ -82,7 +82,7 @@ function userBtns(comntId, parentId) {
 function replyBox(comntId, parentId, reUser) {
     return `
         <div class="reply-box show" id="box${comntId}" >
-            <textarea class='main-form-text-area' placeholder="Add a comment..." rows="3"></textarea>
+            <textarea class='main-form-text-area form-area' placeholder="Add a reply..." rows="3"></textarea>
             <div class="reply-box-footer">
                 <img src="${currentUser.image.png}" 
                     width="34" height="34" class="mobile-only">
